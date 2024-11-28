@@ -1,0 +1,11 @@
+.content-wrapper {
+    margin-left: 250px; /* Mismo ancho que el sidebar */
+    width: calc(100% - 250px);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .d-flex {
+    display: flex;
+    min-height: 100vh;
+  }

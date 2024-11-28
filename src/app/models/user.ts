@@ -1,5 +1,3 @@
-
-
 export class User {
     id: number = 0;
     name!: string ;
@@ -7,5 +5,6 @@ export class User {
     email!: string;
     username!: string;
     password!: string;
+    admin: boolean = false;
     
 }

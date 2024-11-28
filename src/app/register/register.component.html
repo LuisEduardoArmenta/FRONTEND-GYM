@@ -1,0 +1,112 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Registro de Usuario</h4>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input 
+                  type="text"
+                  id="name"
+                  name="name"
+                  [(ngModel)]="user.name"
+                  class="form-control"
+                  [class.is-invalid]="errors?.name"
+                  placeholder="Ingresa tu nombre">
+                @if (errors?.name) {
+                  <div class="invalid-feedback">
+                    {{errors.name}}
+                  </div>
+                }
+              </div>
+  
+              <div class="mb-3">
+                <label for="lastname" class="form-label">Apellido</label>
+                <input 
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  [(ngModel)]="user.lastname"
+                  class="form-control"
+                  [class.is-invalid]="errors?.lastname"
+                  placeholder="Ingresa tu apellido">
+                @if (errors?.lastname) {
+                  <div class="invalid-feedback">
+                    {{errors.lastname}}
+                  </div>
+                }
+              </div>
+  
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input 
+                  type="email"
+                  id="email"
+                  name="email"
+                  [(ngModel)]="user.email"
+                  class="form-control"
+                  [class.is-invalid]="errors?.email"
+                  placeholder="ejemplo@email.com">
+                @if (errors?.email) {
+                  <div class="invalid-feedback">
+                    {{errors.email}}
+                  </div>
+                }
+              </div>
+  
+              <div class="mb-3">
+                <label for="username" class="form-label">Nombre de usuario</label>
+                <input 
+                  type="text"
+                  id="username"
+                  name="username"
+                  [(ngModel)]="user.username"
+                  class="form-control"
+                  [class.is-invalid]="errors?.username"
+                  placeholder="Elige un nombre de usuario">
+                @if (errors?.username) {
+                  <div class="invalid-feedback">
+                    {{errors.username}}
+                  </div>
+                }
+              </div>
+  
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input 
+                  type="password"
+                  id="password"
+                  name="password"
+                  [(ngModel)]="user.password"
+                  class="form-control"
+                  [class.is-invalid]="errors?.password"
+                  placeholder="Ingresa tu contraseña">
+                @if (errors?.password) {
+                  <div class="invalid-feedback">
+                    {{errors.password}}
+                  </div>
+                }
+              </div>
+  
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">
+                  Registrarse
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="onClear()">
+                  Limpiar
+                </button>
+              </div>
+            </form>
+  
+            <div class="mt-3 text-center">
+              <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

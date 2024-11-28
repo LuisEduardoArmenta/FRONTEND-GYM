@@ -40,3 +40,20 @@
         opacity: 1
     }
 }
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    margin-left: 280px; /* Mismo ancho que el sidebar */
+    flex: 1;
+    padding: 20px;
+}

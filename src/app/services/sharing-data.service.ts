@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +14,35 @@ import { User } from '../models/user';
     private _findUserByIdEventEmitter = new EventEmitter();
   
     private _selectUserEventEmitter = new EventEmitter();
+
+    private _errorsUserFormEventEmitter = new EventEmitter();
+
+    private _pageUsersEventEmitter = new EventEmitter();
+
+    private _handlerLoginEventEmitter = new EventEmitter();
+
+    private loginResponseSubject = new BehaviorSubject<any>(null);
+    loginResponse$ = this.loginResponseSubject.asObservable();
   
     constructor() { }
+
+    get handlerLoginEventEmitter(){
+      return this._handlerLoginEventEmitter;
+    }
+    
+    setLoginResponse(response: any) {
+      this.loginResponseSubject.next(response);
+    }
+
+
+    get pageUsersEventEmitter(){
+      return this._pageUsersEventEmitter;
+    }
+
+
+    get errorsUserFormEventEmitter(){
+      return this._errorsUserFormEventEmitter;
+    }
   
     get selectUserEventEmitter() {
       return this._selectUserEventEmitter;
@@ -31,6 +59,8 @@ import { User } from '../models/user';
     get idUserEventEmitter(): EventEmitter<number>{
       return this._idUserEventEmitter;
     }
+    
+    
   
   }
   

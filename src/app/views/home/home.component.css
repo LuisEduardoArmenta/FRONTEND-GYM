@@ -1,0 +1,151 @@
+.hero-section {
+    height: 100vh; 
+    background-image: url('/images/HeroBanner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 3rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    z-index: 2;
+}
+.hero-section img {
+    
+    object-fit: cover;
+    height: 100%;
+  } 
+  .card {
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .social-icons a {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #ffc107 !important;
+  }
+  
+  /* Asegurarnos que no haya márgenes que afecten */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .visit-section {
+    background: linear-gradient(to right, rgba(26, 19, 99, 0.05), rgba(26, 19, 99, 0.1));
+  }
+  
+  .contact-info {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .map-container {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .map-container:hover {
+    transform: translateY(-5px);
+  }
+  
+  .contact-info i {
+    font-size: 1.5rem;
+  }
+
+  .membership-card {
+    border: 2px solid #FDEE21;
+    transition: all 0.3s ease;
+  }
+  
+  .membership-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(253, 238, 33, 0.2);
+  }
+  
+  .countdown-timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1A1363;
+  }
+  
+  .countdown-timer span {
+    background: #FDEE21;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 3px;
+  }
+  
+  .membership-options p {
+    padding: 8px;
+    margin: 5px 0;
+    border-bottom: 1px solid rgba(26, 19, 99, 0.1);
+  }
+
+  .black-friday-section {
+    background: linear-gradient(rgba(26, 19, 99, 0.9), rgba(26, 19, 99, 0.9)),
+                url('/images/gym-background.jpg') center/cover;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .offer-card {
+    position: relative;
+    z-index: 2;
+  }
+
+  .offer-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .btn-warning {
+    background-color: #FDEE21;
+    border: none;
+    color: #1A1363;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-warning:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(253, 238, 33, 0.3);
+    background-color: #FDEE21;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  .black-friday-section h2 {
+    animation: pulse 2s infinite;
+  }
