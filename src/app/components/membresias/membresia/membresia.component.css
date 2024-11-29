@@ -1,0 +1,17 @@
+.content-wrapper {
+    flex: 1;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.table th {
+    background-color: #f1f1f1;
+}
+
+.btn-group .btn {
+    padding: 0.25rem 0.5rem;
+}
+
+.badge {
+    padding: 0.5em 0.8em;
+}

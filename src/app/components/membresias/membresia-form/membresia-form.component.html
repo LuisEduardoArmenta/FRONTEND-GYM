@@ -1,0 +1,89 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+    <div class="content-wrapper p-4">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">{{ title }}</h3>
+                    <button type="button" class="btn-close btn-close-white" 
+                            (click)="onClose()" 
+                            aria-label="Cerrar"></button>
+                </div>
+                <div class="card-body">
+                    @if (errors.length > 0) {
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @for (error of errors; track error) {
+                                    <li>{{error}}</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                    <form (ngSubmit)="onSubmit()" #membresiaForm="ngForm">
+                        <div class="mb-3">
+                            <label for="usuario" class="form-label">Usuario</label>
+                            <select class="form-select" id="usuario" name="usuario" 
+                                    [(ngModel)]="membresia.usuario" 
+                                    [compareWith]="compareUsuario"
+                                    required>
+                                <option [ngValue]="undefined">Seleccione un usuario</option>
+                                @for (usuario of usuarios; track usuario.id) {
+                                    <option [ngValue]="usuario">
+                                        {{usuario.name}} {{usuario.lastname}}
+                                    </option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="plan" class="form-label">Plan</label>
+                            <select class="form-select" id="plan" name="plan" 
+                                    [(ngModel)]="membresia.plan"
+                                    [compareWith]="comparePlan"
+                                    required>
+                                <option [ngValue]="undefined">Seleccione un plan</option>
+                                @for (plan of planes; track plan.id) {
+                                    <option [ngValue]="plan">{{plan.nombre}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                            <input type="date" class="form-control" id="fechaInicio" 
+                                name="fechaInicio" [(ngModel)]="membresia.fechaInicio" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fechaExpiracion" class="form-label">Fecha de Expiración</label>
+                            <input type="date" class="form-control" id="fechaExpiracion" 
+                                name="fechaExpiracion" [(ngModel)]="membresia.fechaExpiracion" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="estadoMembresia" class="form-label">Estado</label>
+                            <select class="form-select" id="estadoMembresia" 
+                                    name="estadoMembresia" [(ngModel)]="membresia.estadoMembresia" required>
+                                <option value="ACTIVO">Activo</option>
+                                <option value="INACTIVO">Inactivo</option>
+                                <option value="PENDIENTE">Pendiente</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex gap-2 mt-3">
+                            <button type="submit" class="btn btn-primary" 
+                                    [disabled]="!membresiaForm.form.valid">
+                                {{editando ? 'Actualizar' : 'Crear'}} Membresía
+                            </button>
+                            <button type="button" class="btn btn-secondary" 
+                                    (click)="onClose()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

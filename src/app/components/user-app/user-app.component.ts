@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import Swal from 'sweetalert2';
-import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 
 import { SharingDataService } from '../../services/sharing-data.service';
 import { AuthService } from '../../services/auth.service';
@@ -161,34 +161,41 @@ export class UserAppComponent implements OnInit {
   removeUser(): void {
     this.sharingData.idUserEventEmitter.subscribe(id => {
       Swal.fire({
-        title: "Seguro que quiere eliminar?",
-        text: "Cuidado el usuario sera eliminado del sistema!",
+        title: "¿Seguro que quiere eliminar?",
+        text: "¡Cuidado! El usuario será eliminado del sistema",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si"
+        confirmButtonText: "Sí, eliminar"
       }).then((result) => {
         if (result.isConfirmed) {
-          
-            this.service.remove(id).subscribe(() => {
-            this.users = this.users.filter(user => user.id != id);
-            this.router.navigate(['/users/create'], { skipLocationChange: true }).then(() => {
-              this.router.navigate(['/users'], {
-                state: {
-                  
-                  users: this.users,
-                  paginator: this.paginator
-                }
+          this.service.delete(id).subscribe({
+            next: () => {
+              this.users = this.users.filter(user => user.id !== id);
+              this.router.navigate(['/users/create'], { skipLocationChange: true }).then(() => {
+                this.router.navigate(['/users'], {
+                  state: {
+                    users: this.users,
+                    paginator: this.paginator
+                  }
+                });
               });
-            });
-          })
-
-
-          Swal.fire({
-            title: "Eliminado!",
-            text: "Usuario eliminado con exito.",
-            icon: "success"
+              
+              Swal.fire({
+                title: "¡Eliminado!",
+                text: "Usuario eliminado con éxito.",
+                icon: "success"
+              });
+            },
+            error: (error) => {
+              console.error('Error al eliminar:', error);
+              Swal.fire({
+                title: "Error",
+                text: "No se pudo eliminar el usuario.",
+                icon: "error"
+              });
+            }
           });
         }
       });

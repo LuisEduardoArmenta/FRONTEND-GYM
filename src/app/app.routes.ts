@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './views/home/home.component';
 import { MembershipsComponent } from './views/memberships/memberships.component';
 import { MembresiaComponent } from './components/membresias/membresia/membresia.component';
+import { MembresiaFormComponent } from './components/membresias/membresia-form/membresia-form.component';
 
 export const routes: Routes = [
     {
@@ -15,29 +16,24 @@ export const routes: Routes = [
         pathMatch: 'full',
         redirectTo: '/home'
     },
-
     {
         path: 'home',
         component: HomeComponent
     },
-
     {
         path: 'users',
         component: UserComponent
     },
-
     {
         path: 'users/page/:page',
         component: UserComponent,
         canActivate: [authGuard]
     },
-
     {
         path: 'users/create',
         component: UserFormComponent,
         canActivate: [authGuard]
     },
-
     {
         path: 'users/edit/:id',
         component: UserFormComponent,
@@ -51,23 +47,31 @@ export const routes: Routes = [
         path: 'forbidden',
         component: Forbidden403Component
     },
-
     {
         path: 'register',
         component: RegisterComponent
     },
-
-    
-
     {
-        path: 'membresias',
+        path: 'membresiasinfo',
         component: MembershipsComponent
     },
-
     {
         path: 'membresia',
+        component: MembresiaComponent
+    },
+    {
+        path: 'membresia/crear',
+        component: MembresiaFormComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'membresia/editar/:id',
+        component: MembresiaFormComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'membresia/page/:page',
         component: MembresiaComponent,
         canActivate: [authGuard]
     }
-
 ];

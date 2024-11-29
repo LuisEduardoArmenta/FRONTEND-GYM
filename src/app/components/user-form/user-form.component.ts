@@ -1,45 +1,45 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { User } from '../../models/user';
-import { SharingDataService } from '../../services/sharing-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'user-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NavbarComponent],
   templateUrl: './user-form.component.html'
 })
 export class UserFormComponent implements OnInit {
-
   user: User = new User();
-  errors: any = [];
-
+  errors: string[] = [];
+  submitted = false;
+  editando = false;
+  formChanged = false;
+  originalUser: User = new User();
 
   constructor(
     private route: ActivatedRoute,
-    private sharingData: SharingDataService,
     private service: UserService,
     private router: Router
-  ) {
-    this.user = new User();
-  }
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const id = +params['id']; // El + convierte el string a número
+      const id = +params['id'];
       if (id) {
+        this.editando = true;
         this.service.findById(id).subscribe({
-          next: (data: User) => {
-            this.user = data;
-            console.log('Usuario cargado:', this.user);
+          next: (user) => {
+            this.user = {...user};
+            this.originalUser = {...user};
           },
-          error: (error) => {
-            console.error('Error al cargar usuario:', error);
-            this.errors = error;
+          error: (err) => {
+            console.error(err);
+            Swal.fire('Error', 'No se pudo cargar el usuario', 'error');
           }
         });
       }
@@ -47,69 +47,58 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.user.id) {
-      // Si el usuario tiene un ID, actualizamos
-      this.service.update(this.user).subscribe({
-        next: () => {
-          Swal.fire({
-            title: '¡Éxito!',
-            text: 'Usuario actualizado correctamente',
-            icon: 'success',
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#1A1363'
-          }).then(() => {
-            this.router.navigate(['/users/page/0']);
-          });
-        },
-        error: (err) => {
-          console.error('Error en actualización:', err);
-          Swal.fire({
-            title: 'Error',
-            text: 'No se pudo actualizar el usuario',
-            icon: 'error',
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#1A1363'
-          });
-          this.errors = err;
+    this.submitted = true;
+    if (!this.formChanged && this.editando) {
+      Swal.fire('Info', 'No se han realizado cambios', 'info');
+      return;
+    }
+
+    const operation = this.editando ? 
+      this.service.update(this.user) : 
+      this.service.create(this.user);
+
+    operation.subscribe({
+      next: () => {
+        Swal.fire({
+          title: '¡Éxito!',
+          text: `Usuario ${this.editando ? 'actualizado' : 'creado'} correctamente`,
+          icon: 'success'
+        }).then(() => {
+          this.router.navigate(['/users']);
+        });
+      },
+      error: (err) => {
+        console.error(err);
+        if (err.status === 400 && err.error?.errors) {
+          this.errors = err.error.errors;
+        } else {
+          Swal.fire('Error', `No se pudo ${this.editando ? 'actualizar' : 'crear'} el usuario`, 'error');
         }
-      });
+      }
+    });
+  }
+
+  onInputChange() {
+    if (this.editando) {
+      this.formChanged = !this.areObjectsEqual(this.user, this.originalUser);
     } else {
-      // Si no tiene ID, creamos un nuevo usuario
-      this.service.create(this.user).subscribe({
-        next: () => {
-          Swal.fire({
-            title: '¡Éxito!',
-            text: 'Usuario creado correctamente',
-            icon: 'success',
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#1A1363'
-          }).then(() => {
-            this.router.navigate(['/users/page/0']);
-          });
-        },
-        error: (err) => {
-          console.error('Error en creación:', err);
-          Swal.fire({
-            title: 'Error',
-            text: 'No se pudo crear el usuario',
-            icon: 'error',
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#1A1363'
-          });
-          this.errors = err;
-        }
-      });
+      this.formChanged = true;
     }
   }
 
+  private areObjectsEqual(obj1: any, obj2: any): boolean {
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
+  }
+
   onClose() {
-    this.router.navigate(['/users/page/0']);
+    this.router.navigate(['/users']);
   }
 
-  onClear(userForm: NgForm): void {
+  onClear(form: NgForm) {
     this.user = new User();
-    userForm.reset();
-    userForm.resetForm();
+    this.errors = [];
+    this.submitted = false;
+    this.formChanged = false;
+    form.resetForm();
   }
-
 }

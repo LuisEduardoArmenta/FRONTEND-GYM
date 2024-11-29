@@ -1,62 +1,68 @@
 <div class="d-flex">
-<app-sidebar></app-sidebar>
-<div class="content-wrapper">
-<div class="container mt-4">
+    <app-sidebar></app-sidebar>
+    <div class="content-wrapper p-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3>{{title}}</h3>
+                <button class="btn btn-primary" [routerLink]="['/users/create']">
+                    <i class="fas fa-plus me-2"></i> Nuevo Usuario
+                </button>
+            </div>
 
-<h3>{{title}}</h3>
-
-@if (admin) {
-    <button class="btn btn-primary my-3" [routerLink]="['/users/create']">Crear Usuario</button>
-
-}
-
-@if (users.length == 0) {
-<div class="alert alert-warning">No hay registros en el sistema!</div>
-} @else {
-<table class="table table-hover table-striped">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>lastname</th>
-            <th>email</th>
-            <th>username</th>
-            @if(admin){
-                <th>remove</th>
-                <th>update</th>
+            @if (users.length === 0) {
+                <div class="alert alert-info">
+                    No hay usuarios registrados
+                </div>
+            } @else {
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Username</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (user of users; track user.id) {
+                                <tr>
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.lastname}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.username}}</td>
+                                    <td>
+                                        <span [class]="'badge ' + (user.admin ? 'bg-primary' : 'bg-success')">
+                                            {{user.admin ? 'Administrador' : 'Usuario'}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-info me-1" 
+                                                    (click)="onSelectedUser(user)"
+                                                    title="Editar">
+                                                <i class="fas fa-edit me-1"></i> Editar
+                                            </button>
+                                            @if (admin) {
+                                                <button class="btn btn-sm btn-danger"
+                                                        (click)="onRemoveUser(user.id)"
+                                                        title="Eliminar">
+                                                    <i class="fas fa-trash me-1"></i> Eliminar
+                                                </button>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <paginatorusers [paginator]="paginator" url="/users/page"></paginatorusers>
             }
-        </tr>
-    </thead>
-    <tbody>
-        @for (user of users; track $index) {
-        <tr>
-            <td> {{user.id}} </td>
-            <td> {{user.name}} </td>
-            <td> {{user.lastname}} </td>
-            <td> {{user.email}} </td>
-            <td> {{user.username}} </td>
-            @if(admin){
-                    <td>
-                        <button class="btn btn-danger btn-sm"
-                        (click)="onRemoveUser(user.id)"
-                        >
-                            remove
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-info btn-sm"
-                        (click)="onSelectedUser(user)">
-                            update
-                        </button>
-                    </td>
-        }
-        </tr>
-        }
-    </tbody>
-</table>
-}
-<paginatorusers [paginator]="paginator" [url]="'/users/page'"/>
-</div>
-</div>
-
+        </div>
+    </div>
 </div>
