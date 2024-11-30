@@ -1,0 +1,91 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h3>{{ editando ? 'Editar' : 'Crear' }} Plan</h3>
+            <button type="button" class="btn-close btn-close-white" (click)="onClose()"></button>
+        </div>
+        <div class="card-body">
+            @if (errors.length > 0) {
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @for (error of errors; track error) {
+                            <li>{{error}}</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <form (ngSubmit)="onSubmit()" #planForm="ngForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombre" class="form-label">Nombre *</label>
+                        <input type="text" class="form-control" id="nombre" 
+                               name="nombre" [(ngModel)]="plan.nombre" 
+                               (ngModelChange)="onInputChange()"
+                               required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="precio" class="form-label">Precio *</label>
+                        <input type="number" class="form-control" id="precio" 
+                               name="precio" [(ngModel)]="plan.precio" 
+                               (ngModelChange)="onInputChange()"
+                               required min="0">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="duracion" class="form-label">Duración (meses) *</label>
+                        <input type="number" class="form-control" id="duracion" 
+                               name="duracion" [(ngModel)]="plan.duracion" 
+                               (ngModelChange)="onInputChange()"
+                               required min="1">
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label for="descripcion" class="form-label">Descripción *</label>
+                        <textarea class="form-control" id="descripcion" 
+                                  name="descripcion" [(ngModel)]="plan.descripcion" 
+                                  (ngModelChange)="onInputChange()"
+                                  required rows="3"></textarea>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Beneficios</label>
+                        <div class="mb-2">
+                            <button type="button" class="btn btn-success btn-sm" (click)="addBeneficio()">
+                                Agregar Beneficio
+                            </button>
+                        </div>
+                        @for (beneficio of plan.beneficios; track beneficio; let i = $index) {
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" 
+                                       [(ngModel)]="plan.beneficios[i]" 
+                                       [name]="'beneficio' + i"
+                                       (ngModelChange)="onInputChange()">
+                                <button type="button" class="btn btn-danger" 
+                                        (click)="removeBeneficio(i)">
+                                    Remove
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-success" 
+                            [disabled]="!planForm.form.valid || (!formChanged && editando)">
+                        {{ editando ? 'Update' : 'Create' }}
+                    </button>
+                    <button type="button" class="btn btn-secondary" 
+                            (click)="onClose()">
+                        Cancel
+                    </button>
+                    <button type="button" class="btn btn-danger" 
+                            (click)="onClear(planForm)">
+                        Clear
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

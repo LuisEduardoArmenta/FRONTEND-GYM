@@ -5,11 +5,12 @@ import { MembresiaService } from '../../../services/membresia.service';
 import { AuthService } from '../../../services/auth.service';
 import Swal from 'sweetalert2';
 import { NavbarComponent } from '../../navbar/navbar.component';
+import { PlanComponent } from "../planes/plan/plan.component";
 
 @Component({
   selector: 'app-membresia',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent],
+  imports: [CommonModule, RouterModule, NavbarComponent, PlanComponent],
   templateUrl: './membresia.component.html',
   styleUrl: './membresia.component.css'
 })

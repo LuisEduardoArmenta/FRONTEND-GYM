@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h3>Planes Disponibles</h3>
+            <button class="btn btn-light" (click)="crearPlan()">
+                Nuevo Plan
+            </button>
+        </div>
+        <div class="card-body">
+            @if (planes.length === 0) {
+                <div class="alert alert-info">
+                    No hay planes disponibles
+                </div>
+            } @else {
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Duración</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (plan of planes; track plan.idPlan) {
+                                <tr>
+                                    <td>{{plan.idPlan}}</td>
+                                    <td>{{plan.nombre}}</td>
+                                    <td>{{plan.descripcion}}</td>
+                                    <td>${{plan.precio}}</td>
+                                    <td>{{plan.duracion}}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-warning me-1" 
+                                                    (click)="editarPlan(plan.idPlan!)">
+                                                Editar
+                                            </button>
+                                            <button class="btn btn-sm btn-danger" 
+                                                    (click)="eliminarPlan(plan.idPlan!)">
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

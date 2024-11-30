@@ -9,6 +9,8 @@ import { HomeComponent } from './views/home/home.component';
 import { MembershipsComponent } from './views/memberships/memberships.component';
 import { MembresiaComponent } from './components/membresias/membresia/membresia.component';
 import { MembresiaFormComponent } from './components/membresias/membresia-form/membresia-form.component';
+import { PlanComponent } from './components/membresias/planes/plan/plan.component';
+import { PlanFormComponent } from './components/membresias/planes/plan-form/plan-form.component';
 
 export const routes: Routes = [
     {
@@ -72,6 +74,21 @@ export const routes: Routes = [
     {
         path: 'membresia/page/:page',
         component: MembresiaComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'membresia/planes',
+        component: PlanComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'membresia/planes/crear',
+        component: PlanFormComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'membresia/planes/editar/:id',
+        component: PlanFormComponent,
         canActivate: [authGuard]
     }
 ];
