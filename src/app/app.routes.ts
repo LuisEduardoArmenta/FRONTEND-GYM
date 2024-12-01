@@ -13,6 +13,8 @@ import { PlanComponent } from './components/membresias/planes/plan/plan.componen
 import { PlanFormComponent } from './components/membresias/planes/plan-form/plan-form.component';
 import { VentasComponent } from './components/ventas/ventas/ventas.component';
 import { VentasFormComponent } from './components/ventas/ventas-form/ventas-form.component';
+import { InventarioComponent } from './components/inventario/inventario.component';
+import { InventarioFormComponent } from './components/inventario/inventario-form/inventario-form.component';
 
 export const routes: Routes = [
     {
@@ -106,6 +108,21 @@ export const routes: Routes = [
     {
         path: 'ventas/editar/:id',
         component: VentasFormComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'inventario',
+        component: InventarioComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'inventario/crear',
+        component: InventarioFormComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'inventario/editar/:id',
+        component: InventarioFormComponent,
         canActivate: [authGuard]
     }
 ];

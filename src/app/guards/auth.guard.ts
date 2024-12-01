@@ -12,11 +12,12 @@ export const authGuard: CanActivateFn = (route, state) => {
     service.logout();
     router.navigate(['/login']);
 
-      return false;
+    return false;
     }
     if(!service.isAdmin()){
-      router.navigate(['/forbidden']);  
-      return false;
+    router.navigate(['/forbidden']);
+      
+    return false;
 
 
     }

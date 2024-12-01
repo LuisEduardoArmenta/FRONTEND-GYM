@@ -1,0 +1,121 @@
+/* Estilos para el título principal */
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.title-underline {
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(to right, #007bff, #00ff88);
+    margin: 1.5rem auto;
+    border: none;
+}
+
+/* Estilos para la tabla */
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Estilos para los botones */
+.btn-group .btn {
+    padding: 0.375rem 0.75rem;
+}
+
+.btn-group .btn i {
+    font-size: 1rem;
+}
+
+/* Estilos para los badges */
+.badge {
+    padding: 0.5em 0.8em;
+    font-weight: 500;
+}
+
+/* Estilos para la barra de búsqueda */
+.input-group {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.input-group-text {
+    background-color: white;
+    border-right: none;
+}
+
+.input-group .form-control {
+    border-left: none;
+}
+
+.input-group .form-control:focus {
+    box-shadow: none;
+}
+
+/* Animaciones */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    position: relative;
+    padding: 1.5rem;
+}
+
+.card h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+.card-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Colores personalizados para las tarjetas */
+.bg-primary {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.bg-warning {
+    background: linear-gradient(45deg, #ffc107, #d39e00);
+}
+
+.bg-success {
+    background: linear-gradient(45deg, #28a745, #1e7e34);
+}
+
+.bg-info {
+    background: linear-gradient(45deg, #17a2b8, #117a8b);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .btn-group .btn {
+        padding: 0.25rem 0.5rem;
+    }
+} 

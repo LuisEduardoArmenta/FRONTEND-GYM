@@ -1,0 +1,157 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+    <div class="content-wrapper p-4">
+        <div class="container mt-4">
+            <!-- Título Principal -->
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h1 class="main-title">Gestión de Inventario</h1>
+                    <hr class="title-underline">
+                </div>
+            </div>
+
+            <!-- Después del título y antes de la tabla -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Productos</h5>
+                            <h2>{{totalProductos}}</h2>
+                            <i class="bi bi-box-seam position-absolute top-50 end-0 me-3 opacity-50 fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Stock Bajo</h5>
+                            <h2>{{stockBajo}}</h2>
+                            <i class="bi bi-exclamation-triangle position-absolute top-50 end-0 me-3 opacity-50 fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Valor Total</h5>
+                            <h2>${{totalValor | number:'1.2-2'}}</h2>
+                            <i class="bi bi-currency-dollar position-absolute top-50 end-0 me-3 opacity-50 fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Categorías</h5>
+                            <h2>{{categorias.length}}</h2>
+                            <i class="bi bi-tags position-absolute top-50 end-0 me-3 opacity-50 fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Productos -->
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+                    <h3 class="mb-0">Lista de Productos</h3>
+                    <button class="btn btn-light" (click)="crearProducto()">
+                        <i class="bi bi-plus-circle me-2"></i>Nuevo Producto
+                    </button>
+                </div>
+                <div class="card-body">
+                    <!-- Barra de búsqueda -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" 
+                                       class="form-control" 
+                                       placeholder="Buscar producto..."
+                                       [(ngModel)]="terminoBusqueda"
+                                       (keyup)="buscarProducto()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Después de la barra de búsqueda -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <select class="form-select" [(ngModel)]="filtroCategoria" (change)="aplicarFiltros()">
+                                <option value="">Todas las categorías</option>
+                                @for (categoria of categorias; track categoria) {
+                                    <option [value]="categoria">{{categoria}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" [(ngModel)]="filtroStock" (change)="aplicarFiltros()">
+                                <option value="">Todo el stock</option>
+                                <option value="bajo">Stock bajo (<10)</option>
+                                <option value="normal">Stock normal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Tabla -->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Precio</th>
+                                    <th>Stock</th>
+                                    <th>Categoría</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (productos.length === 0) {
+                                    <tr>
+                                        <td colspan="8" class="text-center">No hay productos registrados</td>
+                                    </tr>
+                                } @else {
+                                    @for (producto of productos; track producto.idProducto) {
+                                        <tr>
+                                            <td>{{producto.idProducto}}</td>
+                                            <td>{{producto?.nombre}}</td>
+                                            <td>{{producto?.descripcion}}</td>
+                                            <td>${{producto?.precio}}</td>
+                                            <td>
+                                                <span [class]="producto?.stock < 10 ? 'badge bg-danger' : 'badge bg-success'">
+                                                    {{producto?.stock}}
+                                                </span>
+                                            </td>
+                                            <td>{{producto?.categoria}}</td>
+                                            <td>
+                                                <span [class]="producto.estado === true ? 'badge bg-success' : 'badge bg-danger'">
+                                                    {{producto.estado === true ? 'Activo' : 'Inactivo'}}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-info me-2" 
+                                                            (click)="editarProducto(producto.idProducto)">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger"
+                                                            (click)="eliminarProducto(producto.idProducto)">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
