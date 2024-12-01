@@ -44,6 +44,8 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     position: relative;
+    text-align: center;
+    padding-top: 2rem;
   }
   
   .membership-card:hover {
@@ -68,10 +70,11 @@
   }
   
   .card-header {
-    background: #1A1363;
+    background: #007bff;
     color: white;
     padding: 20px;
     text-align: center;
+    margin-top: -1rem;
   }
   
   .price {
@@ -105,4 +108,62 @@
   
   .benefits i {
     color: #1A1363;
+  }
+  
+  .plan-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 2px solid #FDEE21;
+  }
+  
+  .plan-icon i {
+    font-size: 2.5rem;
+    color: #FDEE21;
+  }
+  
+  .membership-card:nth-child(1) .plan-icon {
+    border-color: #007bff;
+  }
+  
+  .membership-card:nth-child(1) .plan-icon i {
+    color: #007bff;
+  }
+  
+  .membership-card:nth-child(2) .plan-icon {
+    border-color: #28a745;
+  }
+  
+  .membership-card:nth-child(2) .plan-icon i {
+    color: #28a745;
+  }
+  
+  .membership-card:nth-child(3) .plan-icon {
+    border-color: #17a2b8;
+  }
+  
+  .membership-card:nth-child(3) .plan-icon i {
+    color: #17a2b8;
+  }
+  
+  .membership-card:nth-child(4) .plan-icon {
+    border-color: #ffc107;
+  }
+  
+  .membership-card:nth-child(4) .plan-icon i {
+    color: #ffc107;
+  }
+  
+  .membership-card:nth-child(5) .plan-icon {
+    border-color: #dc3545;
+  }
+  
+  .membership-card:nth-child(5) .plan-icon i {
+    color: #dc3545;
   }

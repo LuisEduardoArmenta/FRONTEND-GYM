@@ -15,7 +15,6 @@ import { PlanComponent } from "../planes/plan/plan.component";
   styleUrl: './membresia.component.css'
 })
 export class MembresiaComponent implements OnInit {
-  title: string = 'Gestión de Membresías';
   membresias: any[] = [];
   loading: boolean = true;
 
@@ -23,7 +22,7 @@ export class MembresiaComponent implements OnInit {
     private membresiaService: MembresiaService,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.cargarMembresias();
@@ -31,22 +30,14 @@ export class MembresiaComponent implements OnInit {
 
   cargarMembresias(): void {
     this.loading = true;
-    console.log('Cargando membresías...'); // Para debugging
     this.membresiaService.getMembresias().subscribe({
       next: (data) => {
-        console.log('Membresías recibidas:', data); // Para debugging
         this.membresias = data;
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error al cargar membresías:', error);
+        console.error('Error:', error);
         this.loading = false;
-        if (error.status === 401 || error.status === 403) {
-          Swal.fire('Error', 'No tiene permisos para acceder a este recurso', 'error');
-          this.router.navigate(['/login']);
-        } else {
-          Swal.fire('Error', 'Error al cargar las membresías', 'error');
-        }
       }
     });
   }

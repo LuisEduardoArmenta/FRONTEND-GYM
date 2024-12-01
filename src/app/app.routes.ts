@@ -11,6 +11,8 @@ import { MembresiaComponent } from './components/membresias/membresia/membresia.
 import { MembresiaFormComponent } from './components/membresias/membresia-form/membresia-form.component';
 import { PlanComponent } from './components/membresias/planes/plan/plan.component';
 import { PlanFormComponent } from './components/membresias/planes/plan-form/plan-form.component';
+import { VentasComponent } from './components/ventas/ventas/ventas.component';
+import { VentasFormComponent } from './components/ventas/ventas-form/ventas-form.component';
 
 export const routes: Routes = [
     {
@@ -89,6 +91,21 @@ export const routes: Routes = [
     {
         path: 'membresia/planes/editar/:id',
         component: PlanFormComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'ventas',
+        component: VentasComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'ventas/crear',
+        component: VentasFormComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'ventas/editar/:id',
+        component: VentasFormComponent,
         canActivate: [authGuard]
     }
 ];

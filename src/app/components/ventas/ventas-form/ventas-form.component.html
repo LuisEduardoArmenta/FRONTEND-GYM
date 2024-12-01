@@ -1,0 +1,92 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+    <div class="content-wrapper p-4">
+        <div class="container">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+                    <h3 class="mb-0 fs-4">{{ title }}</h3>
+                    <button type="button" class="btn-close btn-close-white" 
+                            (click)="onClose()" 
+                            aria-label="Cerrar"></button>
+                </div>
+                <div class="card-body p-4">
+                    @if (errors.length > 0) {
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @for (error of errors; track error) {
+                                    <li>{{error}}</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    
+                    <form #ventaForm="ngForm" (ngSubmit)="onSubmit()" class="row g-4">
+                        <div class="col-md-6">
+                            <label for="producto" class="form-label fw-bold">Producto</label>
+                            <select class="form-select form-select-lg" id="producto" name="producto"
+                                    [(ngModel)]="venta.producto" 
+                                    (change)="calcularTotal()"
+                                    required>
+                                <option [ngValue]="null">Seleccione un producto</option>
+                                @for (producto of productos; track producto.idProducto) {
+                                    <option [ngValue]="producto">{{producto.nombre}} - ${{producto.precio}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="cantidad" class="form-label fw-bold">Cantidad</label>
+                            <input type="number" class="form-control form-control-lg" id="cantidad"
+                                   name="cantidad" [(ngModel)]="venta.cantidad"
+                                   (change)="calcularTotal()"
+                                   min="1" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="total" class="form-label fw-bold">Total</label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="total"
+                                       name="total" [(ngModel)]="venta.total"
+                                       readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="vendedor" class="form-label fw-bold">Vendedor</label>
+                            <input type="text" class="form-control form-control-lg" id="vendedor"
+                                   name="vendedor" [(ngModel)]="venta.vendedor"
+                                   required>
+                        </div>
+
+                        @if (venta.producto) {
+                            <div class="col-12">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Detalles del Producto</h5>
+                                        <p class="card-text">
+                                            <strong>Nombre:</strong> {{venta.producto.nombre}}<br>
+                                            <strong>Precio Unitario:</strong> ${{venta.producto.precio}}<br>
+                                            <strong>Stock Disponible:</strong> {{venta.producto.stock}} unidades
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-12 d-flex gap-3 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-5"
+                                    [disabled]="!ventaForm.form.valid">
+                                {{editando ? 'Actualizar' : 'Crear'}} Venta
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-lg px-5" 
+                                    (click)="onClose()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

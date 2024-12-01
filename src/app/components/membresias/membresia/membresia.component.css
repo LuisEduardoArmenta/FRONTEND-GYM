@@ -15,3 +15,213 @@
 .badge {
     padding: 0.5em 0.8em;
 }
+
+.section-title {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.plan-card {
+    padding: 1.5rem;
+    text-align: center;
+    height: 100%;
+    border-width: 2px !important;
+    margin: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.plan-features {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.plan-features li {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.plan-card.featured {
+    border: 2px solid #007bff;
+    transform: scale(1.02);
+}
+
+.plan-card.featured:hover {
+    transform: scale(1.02) translateY(-5px);
+}
+
+.plan-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plan-icon i {
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #007bff;
+    margin: 1rem 0;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.plan-features li {
+    margin: 0.8rem 0;
+    color: #666;
+}
+
+.plan-features i {
+    color: #28a745;
+    margin-right: 0.5rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilos para las estadísticas */
+.card h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    animation: countUp 1s ease-out;
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .plan-card.featured {
+        transform: none;
+    }
+    
+    .plan-card.featured:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Estilos para el título principal */
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.title-underline {
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(to right, #007bff, #00ff88);
+    margin: 1.5rem auto;
+    border: none;
+}
+
+/* Colores específicos para los bordes */
+.border-primary {
+    border-color: #007bff !important;
+}
+
+.border-success {
+    border-color: #28a745 !important;
+}
+
+.border-info {
+    border-color: #17a2b8 !important;
+}
+
+.border-warning {
+    border-color: #ffc107 !important;
+}
+
+.border-danger {
+    border-color: #dc3545 !important;
+}
+
+/* Ajustes para las tarjetas de planes */
+.plan-card {
+    padding: 1.5rem;
+    text-align: center;
+    height: 100%;
+    border-width: 2px !important;
+    margin: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Espaciado entre filas */
+.row.mb-5 {
+    margin-bottom: 3rem !important;
+}
+
+/* Ajuste para el plan Diamond centrado */
+.col-6.mx-auto .plan-card {
+    max-width: 500px;
+    margin: 0 auto;
+}

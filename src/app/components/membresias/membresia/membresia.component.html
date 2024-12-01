@@ -2,9 +2,122 @@
     <app-sidebar></app-sidebar>
     <div class="content-wrapper p-4">
         <div class="container mt-4">
+            <!-- Título Principal -->
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h1 class="main-title">Gestión de Membresías</h1>
+                    <hr class="title-underline">
+                </div>
+            </div>
+
+            <!-- Tarjetas de Planes -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="section-title mb-4">Planes Disponibles</h3>
+                </div>
+            </div>
+
+            <!-- Primera fila de planes -->
+            <div class="row mb-5">
+                <div class="col px-4">
+                    <div class="card plan-card h-100 border-primary">
+                        <div class="card-body text-center">
+                            <div class="plan-icon mb-3">
+                                <i class="bi bi-star"></i>
+                            </div>
+                            <h4>Plan Básico</h4>
+                            <h2 class="price">$299/mes</h2>
+                            <ul class="plan-features">
+                                <li><i class="bi bi-check-circle"></i> Acceso al gimnasio</li>
+                                <li><i class="bi bi-check-circle"></i> Área de pesas</li>
+                                <li><i class="bi bi-check-circle"></i> Vestidores</li>
+                                <li><i class="bi bi-check-circle"></i> Área cardiovascular</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col px-4">
+                    <div class="card plan-card h-100 border-success">
+                        <div class="card-body text-center">
+                            <div class="plan-icon mb-3">
+                                <i class="bi bi-stars"></i>
+                            </div>
+                            <h4>Plan Premium</h4>
+                            <h2 class="price">$799/trimestre</h2>
+                            <ul class="plan-features">
+                                <li><i class="bi bi-check-circle"></i> Todo del plan básico</li>
+                                <li><i class="bi bi-check-circle"></i> Clases grupales</li>
+                                <li><i class="bi bi-check-circle"></i> Programa de entrenamiento</li>
+                                <li><i class="bi bi-check-circle"></i> Evaluación física mensual</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda fila de planes -->
+            <div class="row mb-5">
+                <div class="col px-4">
+                    <div class="card plan-card h-100 border-info">
+                        <div class="card-body text-center">
+                            <div class="plan-icon mb-3">
+                                <i class="bi bi-trophy"></i>
+                            </div>
+                            <h4>Plan Elite</h4>
+                            <h2 class="price">$1,499/semestre</h2>
+                            <ul class="plan-features">
+                                <li><i class="bi bi-check-circle"></i> Todo del plan premium</li>
+                                <li><i class="bi bi-check-circle"></i> Asesoría nutricional</li>
+                                <li><i class="bi bi-check-circle"></i> Acceso a sauna</li>
+                                <li><i class="bi bi-check-circle"></i> 2 sesiones PT mensuales</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col px-4">
+                    <div class="card plan-card h-100 border-warning">
+                        <div class="card-body text-center">
+                            <div class="plan-icon mb-3">
+                                <i class="bi bi-gem"></i>
+                            </div>
+                            <h4>Plan Platinum</h4>
+                            <h2 class="price">$2,799/año</h2>
+                            <ul class="plan-features">
+                                <li><i class="bi bi-check-circle"></i> Todo del plan elite</li>
+                                <li><i class="bi bi-check-circle"></i> 4 sesiones PT mensuales</li>
+                                <li><i class="bi bi-check-circle"></i> Acceso a piscina</li>
+                                <li><i class="bi bi-check-circle"></i> Suplementos básicos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tercera fila con plan Diamond -->
+            <div class="row mb-5">
+                <div class="col-6 mx-auto px-4">
+                    <div class="card plan-card h-100 border-danger">
+                        <div class="card-body text-center">
+                            <div class="plan-icon mb-3">
+                                <i class="bi bi-diamond"></i>
+                            </div>
+                            <h4>Plan Diamond</h4>
+                            <h2 class="price">$4,999/2 años</h2>
+                            <ul class="plan-features">
+                                <li><i class="bi bi-check-circle"></i> Todo del plan platinum</li>
+                                <li><i class="bi bi-check-circle"></i> PT ilimitado</li>
+                                <li><i class="bi bi-check-circle"></i> Spa completo</li>
+                                <li><i class="bi bi-check-circle"></i> Invitados permitidos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Membresías -->
             <div class="card">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                    <h3>Membresías Disponibles</h3>
+                    <h3>Registro de Membresías</h3>
                     <button class="btn btn-light" (click)="crearMembresia()">
                         Nueva Membresía
                     </button>
@@ -69,9 +182,6 @@
                     }
                 </div>
             </div>
-
-            <!-- Componente de planes -->
-            <app-plan></app-plan>
         </div>
     </div>
 </div>
