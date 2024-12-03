@@ -15,6 +15,10 @@ import { VentasComponent } from './components/ventas/ventas/ventas.component';
 import { VentasFormComponent } from './components/ventas/ventas-form/ventas-form.component';
 import { InventarioComponent } from './components/inventario/inventario.component';
 import { InventarioFormComponent } from './components/inventario/inventario-form/inventario-form.component';
+import { UserDashboardComponent } from './users/user-dashboard/user-dashboard.component';
+import { ObjetivosComponent } from './users/objetivos/objetivos.component';
+import { TrainingPlansComponent } from './users/training-plans/training-plans.component';
+import { ControlCajaComponent } from './components/control-caja/control-caja.component';
 
 export const routes: Routes = [
     {
@@ -28,22 +32,27 @@ export const routes: Routes = [
     },
     {
         path: 'users',
-        component: UserComponent
+        component: UserComponent,
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'users/page/:page',
         component: UserComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'users/create',
         component: UserFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'users/edit/:id',
         component: UserFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'login',
@@ -63,66 +72,107 @@ export const routes: Routes = [
     },
     {
         path: 'membresia',
-        component: MembresiaComponent
+        component: MembresiaComponent,
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'membresia/crear',
         component: MembresiaFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'membresia/editar/:id',
         component: MembresiaFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'membresia/page/:page',
         component: MembresiaComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'membresia/planes',
         component: PlanComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'membresia/planes/crear',
         component: PlanFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'membresia/planes/editar/:id',
         component: PlanFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'ventas',
         component: VentasComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'ventas/crear',
         component: VentasFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'ventas/editar/:id',
         component: VentasFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'inventario',
         component: InventarioComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'inventario/crear',
         component: InventarioFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     },
     {
         path: 'inventario/editar/:id',
         component: InventarioFormComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
+    },
+
+
+    {
+        path: 'control-caja',
+        component: ControlCajaComponent,
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
+    },
+
+    {
+        path: 'user/dashboard',
+        component: UserDashboardComponent,
+        canActivate: [authGuard],
+        data: { role: 'USER' }
+    },
+    {
+        path: 'user/objetivos',
+        component: ObjetivosComponent,
+        canActivate: [authGuard],
+        data: { role: 'USER' }
+    },
+    {
+        path: 'user/entrenamientos',
+        component: TrainingPlansComponent,
+        canActivate: [authGuard],
+        data: { role: 'USER' }
     }
 ];

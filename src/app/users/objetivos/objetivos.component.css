@@ -1,0 +1,48 @@
+.main-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    width: calc(100% - 250px);
+}
+
+.card {
+    transition: transform 0.2s;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.progress {
+    height: 20px;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    transition: width 0.3s ease;
+}
+
+.form-range {
+    width: 150px;
+}
+
+.badge {
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.btn-group .btn {
+    border-radius: 20px;
+}
+
+.card-header {
+    border-bottom: none;
+}

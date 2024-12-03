@@ -1,0 +1,15 @@
+.table-responsive {
+    margin-top: 1rem;
+  }
+  
+  .badge {
+    font-size: 0.8rem;
+  }
+  
+  .table th {
+    background-color: #f8f9fa;
+  }
+  
+  .table td {
+    vertical-align: middle;
+  }

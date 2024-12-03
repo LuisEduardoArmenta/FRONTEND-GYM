@@ -1,0 +1,108 @@
+.training-plans {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+}
+
+.card {
+    height: 100%;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.plan-info {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.day-title {
+    color: #1A1363;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #1A1363;
+}
+
+.modal-dialog {
+    max-width: 800px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.badge {
+    font-size: 0.9em;
+    padding: 8px 12px;
+    margin-right: 10px;
+}
+
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 85px);
+    margin-top: 85px;
+}
+
+.training-tips {
+    background-color: #f8f9fa;
+    border-left: 4px solid #1A1363;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.training-tips ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+.training-tips li {
+    margin-bottom: 5px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px;  /* Compensar el padding de las columnas */
+    justify-content: flex-start;
+}
+
+.col-md-6 {
+    padding: 10px;
+    flex: 0 0 calc(50% - 20px);  /* 50% de ancho menos el padding */
+    max-width: calc(50% - 20px);
+}
+
+@media (max-width: 768px) {
+    .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .content {
+        margin-left: 0;
+        padding: 10px;
+    }
+}

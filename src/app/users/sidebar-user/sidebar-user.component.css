@@ -1,0 +1,103 @@
+.sidebar {
+    width: 280px;
+    min-height: 100%;
+    background-color: #0d6efd;
+    color: white;
+    padding: 1rem;
+    position: sticky; /* Cambiamos a sticky en lugar de fixed */
+    top: 85px; /* Ajustamos para que no tape el navbar */
+}
+
+
+.sidebar-header {
+    padding: 1rem;
+    text-align: center;
+}
+
+.user-profile {
+    padding: 1rem;
+    margin: 1rem 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.avatar {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.user-info {
+    margin-top: 0.5rem;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.email {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.sidebar-nav {
+    margin-top: 2rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.nav-item i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.nav-item span {
+    flex: 1;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-left: 4px solid white;
+    font-weight: bold;
+}
+
+.logout-btn {
+    margin-top: auto;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin: 20px 15px;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+.nav-item.logout-btn i {
+    margin-right: 10px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 150px); /* Ajusta según el header */
+}

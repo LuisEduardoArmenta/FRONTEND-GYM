@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Historial de Cajas</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID Caja</th>
+                        <th>Fecha Apertura</th>
+                        <th>Fecha Cierre</th>
+                        <th>Monto Inicial</th>
+                        <th>Monto Final</th>
+                        <th>Estado</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (caja of cajas; track caja.idCaja) {
+                        <tr>
+                            <td>#{{caja.idCaja}}</td>
+                            <td>{{caja.fechaApertura | date:'short'}}</td>
+                            <td>{{caja.fechaCierre | date:'short'}}</td>
+                            <td>${{caja.montoInicial}}</td>
+                            <td>${{caja.montoFinal}}</td>
+                            <td>
+                                <span [class]="'badge ' + (caja.estado === 'ABIERTA' ? 'bg-success' : 'bg-danger')">
+                                    {{caja.estado}}
+                                </span>
+                            </td>
+                            <td>{{caja.observaciones}}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

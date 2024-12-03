@@ -24,51 +24,83 @@
                                 <label for="name" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="name" 
                                        name="name" [(ngModel)]="user.name" 
+                                       #name="ngModel"
                                        (ngModelChange)="onInputChange()"
                                        required>
+                                <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+                                    El nombre es requerido
+                                </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="lastname" class="form-label">Apellido</label>
                                 <input type="text" class="form-control" id="lastname" 
                                        name="lastname" [(ngModel)]="user.lastname" 
+                                       #lastname="ngModel"
                                        (ngModelChange)="onInputChange()"
                                        required>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" 
-                                       name="email" [(ngModel)]="user.email" 
-                                       (ngModelChange)="onInputChange()"
-                                       required>
+                                <div class="invalid-feedback" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+                                    El apellido es requerido
+                                </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" 
                                        name="username" [(ngModel)]="user.username" 
+                                       #username="ngModel"
                                        (ngModelChange)="onInputChange()"
-                                       required>
+                                       required minlength="4" maxlength="12"
+                                       [class.is-invalid]="username.invalid && (username.dirty || username.touched)">
+                                <div class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">
+                                    <div *ngIf="username.errors?.['required']">El username es requerido</div>
+                                    <div *ngIf="username.errors?.['minlength']">El username debe tener al menos 4 caracteres</div>
+                                    <div *ngIf="username.errors?.['maxlength']">El username no puede tener más de 12 caracteres</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" 
+                                       name="email" [(ngModel)]="user.email" 
+                                       #email="ngModel"
+                                       (ngModelChange)="onInputChange()"
+                                       required email
+                                       [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+                                <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+                                    <div *ngIf="email.errors?.['required']">El email es requerido</div>
+                                    <div *ngIf="email.errors?.['email']">Ingrese un email válido</div>
+                                </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
                                 <input type="password" class="form-control" id="password" 
                                        name="password" [(ngModel)]="user.password" 
+                                       #password="ngModel"
                                        (ngModelChange)="onInputChange()"
-                                       [required]="!editando">
+                                       [required]="!editando"
+                                       minlength="4"
+                                       [class.is-invalid]="password.invalid && (password.dirty || password.touched)">
+                                <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
+                                    <div *ngIf="password.errors?.['required']">La contraseña es requerida</div>
+                                    <div *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 4 caracteres</div>
+                                </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="userType" class="form-label">Tipo de Usuario</label>
                                 <select class="form-select" id="userType" 
                                         name="userType" [(ngModel)]="user.admin"
+                                        #userType="ngModel"
                                         (ngModelChange)="onInputChange()" 
                                         required>
                                     <option [ngValue]="false">Usuario Regular</option>
                                     <option [ngValue]="true">Administrador</option>
                                 </select>
+                                <div class="invalid-feedback" *ngIf="userType.invalid && (userType.dirty || userType.touched)">
+                                    Seleccione un tipo de usuario
+                                </div>
                             </div>
                         </div>
 

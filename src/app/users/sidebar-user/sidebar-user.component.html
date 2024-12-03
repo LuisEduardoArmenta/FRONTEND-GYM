@@ -1,0 +1,80 @@
+<div class="sidebar bg-primary">
+    <div class="sidebar-header">
+        <h2>Mi Panel</h2>
+    </div>
+    
+    <div class="user-profile">
+        <div class="avatar">
+            <i class="bi bi-person-circle"></i>
+        </div>
+        <div class="user-info">
+            <div class="username">{{username}}</div>
+            <div class="email">{{email}}</div>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <a routerLink="/user/dashboard" 
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-item">
+            <i class="bi bi-house-door"></i>
+            <span>Inicio</span>
+        </a>
+        
+        <a routerLink="/user/objetivos" 
+           routerLinkActive="active"
+           class="nav-item">
+            <i class="bi bi-bullseye"></i>
+            <span>Mis Objetivos</span>
+        </a>
+
+        <a routerLink="/user/entrenamientos" 
+           routerLinkActive="active"
+           class="nav-item">
+            <i class="bi bi-lightning-charge"></i>
+            <span>Planes de Entrenamiento</span>
+        </a>
+
+        <a routerLink="/user/membresias" 
+           routerLinkActive="active"
+           class="nav-item">
+            <i class="bi bi-credit-card"></i>
+            <span>Membresías</span>
+        </a>
+
+        <a routerLink="/user/nutricion" 
+           routerLinkActive="active"
+           class="nav-item">
+            <i class="bi bi-apple"></i>
+            <span>Plan Nutricional</span>
+        </a>
+
+        <a routerLink="/user/progreso" 
+           routerLinkActive="active"
+           class="nav-item">
+            <i class="bi bi-graph-up"></i>
+            <span>Mi Progreso</span>
+        </a>
+
+        <a routerLink="/user/clases" 
+           routerLinkActive="active"
+           class="nav-item">
+            <i class="bi bi-calendar-check"></i>
+            <span>Clases Grupales</span>
+        </a>
+
+        <a routerLink="/user/tienda" 
+           routerLinkActive="active"
+           class="nav-item">
+            <i class="bi bi-bag"></i>
+            <span>Tienda</span>
+        </a>
+
+        <a (click)="handlerLogout()" 
+           class="nav-item logout-btn">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Cerrar Sesión</span>
+        </a>
+    </nav>
+</div>

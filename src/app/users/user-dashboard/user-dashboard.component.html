@@ -1,0 +1,210 @@
+<div class="main-container">
+    <app-sidebar-user></app-sidebar-user>
+    <div class="content">
+        <div class="container">
+            <!-- Mensaje de Bienvenida -->
+            <div class="welcome-card mb-4">
+                <div class="card bg-gradient-primary text-white">
+                    <div class="card-body">
+                        <h2 class="welcome-title">¡Bienvenido, {{username}}!</h2>
+                        <p class="welcome-text">
+                            Gracias por ser parte de ARGYM. Aquí podrás encontrar toda la información sobre tu membresía, 
+                            horarios de clases y los mejores suplementos para alcanzar tus objetivos fitness.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Calendario y Horarios -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-clock me-2"></i>
+                                Horarios del Gimnasio
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="schedule-item">
+                                <h6>Lunes a Viernes</h6>
+                                <p>6:00 AM - 10:00 PM</p>
+                            </div>
+                            <div class="schedule-item">
+                                <h6>Sábados</h6>
+                                <p>8:00 AM - 8:00 PM</p>
+                            </div>
+                            <div class="schedule-item">
+                                <h6>Domingos</h6>
+                                <p>9:00 AM - 2:00 PM</p>
+                            </div>
+                            <hr>
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle me-2"></i>
+                                Recuerda que puedes acceder a clases especiales reservando con tu entrenador.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carrusel de Suplementos -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-shop me-2"></i>
+                                Suplementos Destacados
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="/images/proteina2.jpg" class="d-block w-100" alt="Proteína">
+                                        <div class="carousel-caption">
+                                            <h5>Whey Protein</h5>
+                                            <p>Proteína de alta calidad</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/images/aminoacidos1.jpg" class="d-block w-100" alt="BCAA">
+                                        <div class="carousel-caption">
+                                            <h5>BCAA's</h5>
+                                            <p>Recuperación muscular</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/images/creatina1.jpg" class="d-block w-100" alt="Creatina">
+                                        <div class="carousel-caption">
+                                            <h5>Creatina</h5>
+                                            <p>Mejora tu rendimiento</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <!-- Calendario -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-calendar3 me-2"></i>
+                                Calendario de Actividades
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="calendar-wrapper">
+                                <div class="current-month text-center mb-3">
+                                    <h4 class="text-capitalize">{{currentMonthName}}</h4>
+                                </div>
+                                <table class="table table-bordered text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Dom</th>
+                                            <th>Lun</th>
+                                            <th>Mar</th>
+                                            <th>Mié</th>
+                                            <th>Jue</th>
+                                            <th>Vie</th>
+                                            <th>Sáb</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (week of calendar; track $index) {
+                                            <tr>
+                                                @for (day of week; track $index) {
+                                                    <td [class.text-muted]="!day.isCurrentMonth"
+                                                        [class.bg-primary]="day.isToday"
+                                                        [class.text-white]="day.isToday">
+                                                        {{day.day}}
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carrusel de Ropa Deportiva -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-bag-heart me-2"></i>
+                                Ropa Deportiva Destacada
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="carouselRopa" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="/images/youngla.jpg" class="d-block w-100" alt="Outfit Deportivo">
+                                        <div class="carousel-caption">
+                                            <h5>Oversize YOUNGLA</h5>
+                                            <p>Ideal para entrenamiento de alta intensidad</p>
+                                            <span class="badge bg-primary">$500.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="images/sudadera_gymshark.jpg" class="d-block w-100" alt="Ropa Running">
+                                        <div class="carousel-caption">
+                                            <h5>Sudadera Gymshark</h5>
+                                            <p>Para entrenar en invierno</p>
+                                            <span class="badge bg-primary">$450.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/images/gymshark_tank.jpg" class="d-block w-100" alt="Ropa Yoga">
+                                        <div class="carousel-caption">
+                                            <h5>Tank Gymshark</h5>
+                                            <p>Comodidad y flexibilidad</p>
+                                            <span class="badge bg-primary">$200.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/images/pants_youngla.jpg" class="d-block w-100" alt="Ropa Fitness">
+                                        <div class="carousel-caption">
+                                            <h5>Pants YOUNGLA</h5>
+                                            <p>Estilo y rendimiento</p>
+                                            <span class="badge bg-primary">$500.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselRopa" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselRopa" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="/user/tienda" class="btn btn-success">
+                                    <i class="bi bi-cart-plus me-2"></i>
+                                    Ver Catálogo Completo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

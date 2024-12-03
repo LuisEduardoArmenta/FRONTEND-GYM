@@ -69,7 +69,9 @@ export class AuthComponent implements OnInit {
           this.authService.token = token;
           this.authService.user = login;
           
-          this.router.navigate(['/users/page/0']);
+          // Redirigir según el rol
+          const redirectUrl = this.authService.redirectBasedOnRole();
+          this.router.navigate([redirectUrl]);
         },
         error: (error) => {
           console.error('Error en login:', error);

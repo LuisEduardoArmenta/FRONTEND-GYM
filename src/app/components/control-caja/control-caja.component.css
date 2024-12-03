@@ -1,0 +1,92 @@
+.content-wrapper {
+    flex: 1;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    padding: 1rem;
+}
+
+.table th {
+    background-color: #f1f1f1;
+}
+
+.badge {
+    padding: 0.5em 0.8em;
+}
+
+.btn-group .btn {
+    padding: 0.25rem 0.5rem;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.card-title {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #212529;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.table-responsive {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.filters-section {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.totals-section {
+    margin: 1.5rem 0;
+}
+
+.totals-section .card {
+    height: 100%;
+}
+
+.totals-section .card-text.text-success {
+    color: #28a745 !important;
+}
+
+.totals-section .card-text.text-danger {
+    color: #dc3545 !important;
+}
+
+.export-buttons .btn {
+    margin-left: 0.5rem;
+}
+
+h2 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.btn-group .btn {
+    margin-left: 0.5rem;
+}

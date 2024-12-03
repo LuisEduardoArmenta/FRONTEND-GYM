@@ -5,11 +5,11 @@
             <div class="user-details">
                 <div class="username">
                     <i class="bi bi-person-fill"></i>
-                    <span>{{ login?.user?.username }}</span>
+                    <span>{{ username }}</span>
                 </div>
                 <div class="email">
                     <i class="bi bi-envelope-fill"></i>
-                    <span>{{ login?.user?.email }}</span>
+                    <span>{{ email }}</span>
                 </div>
             </div>
         </div>
@@ -17,38 +17,59 @@
     <div class="sidebar-content">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/users/page/0">
+                <a class="nav-link" 
+                   routerLink="/users" 
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}">
                     <i class="bi bi-people-fill"></i> 
                     <span>Gestión de Usuarios</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/users/create">
+                <a class="nav-link" 
+                   routerLink="/users/create"
+                   routerLinkActive="active">
                     <i class="bi bi-person-plus-fill"></i>
                     <span>Crear Usuario</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/membresia">
+                <a class="nav-link" 
+                   routerLink="/membresia"
+                   routerLinkActive="active">
                     <i class="bi bi-card-checklist"></i>
                     <span>Gestión de Membresías</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/ventas">
+                <a class="nav-link" 
+                   routerLink="/ventas"
+                   routerLinkActive="active">
                     <i class="bi bi-cart-fill"></i>
                     <span>Gestión de Ventas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/inventario">
+                <a class="nav-link" 
+                   routerLink="/inventario"
+                   routerLinkActive="active">
                     <i class="bi bi-box-seam-fill"></i>
                     <span>Gestión de Inventario</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" 
+                   routerLink="/control-caja" 
+                   routerLinkActive="active">
+                    <i class="bi bi-cash-stack"></i>
+                    <span>Control de Caja</span>
+                </a>
+            </li>
 
             <li class="nav-item mt-auto">
-                <a class="nav-link logout" (click)="handlerLogout()" style="cursor: pointer;">
+                <a class="nav-link logout" 
+                   (click)="handlerLogout()" 
+                   style="cursor: pointer;">
                     <i class="bi bi-box-arrow-right"></i>
                     <span>Cerrar Sesión</span>
                 </a>

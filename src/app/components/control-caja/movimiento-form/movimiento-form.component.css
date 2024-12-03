@@ -1,0 +1,36 @@
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input-group-text {
+    background-color: #f8f9fa;
+  }
+  
+  .btn {
+    min-width: 100px;
+  }
+  
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+  
+  .form-control.ng-invalid.ng-touched,
+  .form-select.ng-invalid.ng-touched {
+    border-color: #dc3545;
+  }
+  
+  .spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+  }

@@ -75,8 +75,11 @@ export class AuthService {
   }
 
   isAdmin() {
-    return this.user.isAdmin;
+    return this.user.isAuth && this.user.isAdmin;
+  }
 
+  isUser(): boolean {
+    return this.user.isAuth && !this.user.isAdmin;
   }
 
   authenticated() {
@@ -93,6 +96,14 @@ export class AuthService {
     };
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('login');
+  }
+
+  redirectBasedOnRole() {
+    if (this.isAdmin()) {
+      return '/users';
+    } else {
+      return '/user/dashboard';
+    }
   }
 
 }
