@@ -52,6 +52,6 @@ export class CajaService {
   }
 
   getAllMovimientos(): Observable<MovimientoCaja[]> {
-    return this.http.get<MovimientoCaja[]>(`${this.baseUrl}/movimientos`, this.getRequestOptions());
+    return this.http.get<MovimientoCaja[]>('http://localhost:8080/api/movimientos');
   }
 }
