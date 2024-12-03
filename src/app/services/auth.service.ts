@@ -106,4 +106,13 @@ export class AuthService {
     }
   }
 
+  getUserId(): number {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.id;
+    }
+    return 0;
+  }
+
 }

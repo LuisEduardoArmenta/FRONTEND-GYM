@@ -12,6 +12,9 @@ import { CajaService } from '../../../services/caja.service';
 })
 export class TablaMovimientosComponent implements OnInit {
   movimientos: MovimientoCaja[] = [];
+  currentPage = 1;
+  itemsPerPage = 10;
+  pages: number[] = [];
 
   constructor(private cajaService: CajaService) {}
 
@@ -23,11 +26,35 @@ export class TablaMovimientosComponent implements OnInit {
     this.cajaService.getAllMovimientos().subscribe({
       next: (data) => {
         this.movimientos = data;
-        console.log('Movimientos cargados:', data);
+        this.calculatePages();
       },
-      error: (error) => {
-        console.error('Error al cargar movimientos:', error);
-      }
+      error: (error) => console.error('Error al cargar movimientos:', error)
     });
+  }
+
+  get paginatedMovimientos() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.movimientos.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  calculatePages() {
+    const pageCount = Math.ceil(this.movimientos.length / this.itemsPerPage);
+    this.pages = Array.from({length: pageCount}, (_, i) => i + 1);
+  }
+
+  changePage(page: number) {
+    this.currentPage = page;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.pages.length) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
 }

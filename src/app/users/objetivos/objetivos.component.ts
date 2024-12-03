@@ -1,46 +1,58 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { SidebarUserComponent } from '../sidebar-user/sidebar-user.component';
-
-interface Objetivo {
-  id: number;
-  titulo: string;
-  descripcion: string;
-  fechaLimite: string;
-  progreso: number;
-  completado: boolean;
-  categoria: 'peso' | 'fuerza' | 'resistencia' | 'nutricion';
-}
+import { ObjetivoService } from '../../services/objetivo.service';
+import { AuthService } from '../../services/auth.service';
+import { Objetivo } from '../../models/objetivo.model';
 
 @Component({
   selector: 'app-objetivos',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, SidebarUserComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SidebarUserComponent
+  ],
   templateUrl: './objetivos.component.html',
   styleUrls: ['./objetivos.component.css']
 })
 export class ObjetivosComponent implements OnInit {
   objetivos: Objetivo[] = [];
   nuevoObjetivo: Objetivo = this.inicializarObjetivo();
-  categorias = ['peso', 'fuerza', 'resistencia', 'nutricion'];
-  modoEdicion: boolean = false;
+  userId: number;
+
+  constructor(
+    private objetivoService: ObjetivoService,
+    private authService: AuthService
+  ) {
+    this.userId = 1;
+  }
 
   ngOnInit() {
-    // Aquí cargaríamos los objetivos desde un servicio
-    this.objetivos = [
-      {
-        id: 1,
-        titulo: 'Bajar de peso',
-        descripcion: 'Alcanzar 75kg',
-        fechaLimite: '2024-12-31',
-        progreso: 60,
-        completado: false,
-        categoria: 'peso'
-      },
-      // ... más objetivos de ejemplo
-    ];
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      console.error('No hay token disponible');
+      // Redirigir al login si no hay token
+      return;
+    }
+    this.cargarObjetivos();
+  }
+
+  cargarObjetivos() {
+    if (this.userId) {
+      console.log('Cargando objetivos para usuario:', this.userId);
+      this.objetivoService.getObjetivosByUserId(this.userId)
+        .subscribe({
+          next: (objetivos) => {
+            console.log('Objetivos cargados:', objetivos);
+            this.objetivos = objetivos;
+          },
+          error: (error) => {
+            console.error('Error al cargar objetivos:', error);
+          }
+        });
+    }
   }
 
   inicializarObjetivo(): Objetivo {
@@ -51,27 +63,34 @@ export class ObjetivosComponent implements OnInit {
       fechaLimite: '',
       progreso: 0,
       completado: false,
-      categoria: 'peso'
+      categoria: 'peso',
+      userId: this.userId
     };
   }
 
   agregarObjetivo() {
     if (this.nuevoObjetivo.titulo && this.nuevoObjetivo.fechaLimite) {
-      this.nuevoObjetivo.id = this.objetivos.length + 1;
-      this.objetivos.push({...this.nuevoObjetivo});
-      this.nuevoObjetivo = this.inicializarObjetivo();
+      this.objetivoService.crearObjetivo(this.nuevoObjetivo)
+        .subscribe(objetivo => {
+          this.objetivos.unshift(objetivo);
+          this.nuevoObjetivo = this.inicializarObjetivo();
+        });
     }
   }
 
   actualizarProgreso(objetivo: Objetivo, progreso: number) {
-    objetivo.progreso = progreso;
-    if (progreso === 100) {
-      objetivo.completado = true;
-    }
+    this.objetivoService.actualizarProgreso(objetivo.id, progreso)
+      .subscribe(() => {
+        objetivo.progreso = progreso;
+        objetivo.completado = progreso >= 100;
+      });
   }
 
   eliminarObjetivo(id: number) {
-    this.objetivos = this.objetivos.filter(obj => obj.id !== id);
+    this.objetivoService.eliminarObjetivo(id)
+      .subscribe(() => {
+        this.objetivos = this.objetivos.filter(obj => obj.id !== id);
+      });
   }
 
   getProgresoClase(progreso: number): string {

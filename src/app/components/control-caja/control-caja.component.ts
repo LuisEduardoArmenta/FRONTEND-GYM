@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CajaService } from '../../services/caja.service';
@@ -35,6 +35,7 @@ export class ControlCajaComponent implements OnInit {
   estadoCaja: string = '';
   tipoMovimiento: string = '';
   historialCajas: Caja[] = [];
+  @ViewChild('tablaMovimientos') tablaMovimientos!: TablaMovimientosComponent;
 
   constructor(private cajaService: CajaService) { }
 
@@ -130,6 +131,7 @@ export class ControlCajaComponent implements OnInit {
         this.loading = false;
         this.cargarMovimientos(this.cajaActual!.idCaja!);
         Swal.fire('Éxito', 'Movimiento registrado correctamente', 'success');
+        this.tablaMovimientos.cargarMovimientos();
       },
       error: (err) => {
         console.error('Error al registrar movimiento:', err);
@@ -159,6 +161,7 @@ export class ControlCajaComponent implements OnInit {
             Swal.fire('Éxito', 'Caja cerrada correctamente', 'success');
             this.cargarCajaActual();
             this.cargarHistorialCajas();
+            this.tablaMovimientos.cargarMovimientos();
           },
           error: (err) => {
             console.error('Error al cerrar caja:', err);
