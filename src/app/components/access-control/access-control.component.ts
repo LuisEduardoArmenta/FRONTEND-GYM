@@ -5,6 +5,7 @@ import { AccessControlService } from '../../services/access-control.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { NavbarComponent } from '../navbar/navbar.component';
 
@@ -29,8 +30,15 @@ interface AccessLog {
 })
 export class AccessControlComponent implements OnInit, OnDestroy {
   private scanner!: Html5QrcodeScanner;
+  private accessLogsSubscription!: Subscription;
+  private lastScannedQR: string = '';
+  private lastScanTime: number = 0;
+  private readonly SCAN_COOLDOWN = 3000; // 3 segundos de cooldown
+  
   lastResult: any = null;
   accessLogs: AccessLog[] = [];
+  qrStatus: 'valid' | 'invalid' | null = null;
+  qrMessage: string = '';
 
   constructor(
     private accessControlService: AccessControlService,
@@ -38,7 +46,10 @@ export class AccessControlComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Esperar a que el DOM esté listo
+    this.accessLogsSubscription = this.accessControlService.accessLogs$
+      .subscribe(logs => this.accessLogs = logs);
+
+    // Inicializar scanner
     setTimeout(() => {
       const readerElement = document.getElementById('reader');
       if (readerElement) {
@@ -46,7 +57,7 @@ export class AccessControlComponent implements OnInit, OnDestroy {
           'reader',
           {
             qrbox: { width: 250, height: 250 },
-            fps: 20
+            fps: 10  // Reducimos los FPS para disminuir la frecuencia de escaneo
           },
           false
         );
@@ -54,14 +65,31 @@ export class AccessControlComponent implements OnInit, OnDestroy {
       } else {
         console.error('Elemento reader no encontrado');
       }
-    }, 1000); // Dar más tiempo para que el DOM se renderice
+    }, 1000);
   }
 
   ngOnDestroy(): void {
-    this.scanner.clear();
+    if (this.scanner) {
+      this.scanner.clear();
+    }
+    if (this.accessLogsSubscription) {
+      this.accessLogsSubscription.unsubscribe();
+    }
   }
 
   onScanSuccess(decodedText: string) {
+    const currentTime = Date.now();
+    
+    // Verificar si es el mismo QR y si no ha pasado suficiente tiempo
+    if (decodedText === this.lastScannedQR && 
+        currentTime - this.lastScanTime < this.SCAN_COOLDOWN) {
+      return; // Ignorar el escaneo
+    }
+
+    // Actualizar último QR escaneado y tiempo
+    this.lastScannedQR = decodedText;
+    this.lastScanTime = currentTime;
+
     try {
       const qrData = JSON.parse(decodedText);
       this.lastResult = qrData;
@@ -70,30 +98,39 @@ export class AccessControlComponent implements OnInit, OnDestroy {
       this.accessControlService.validateQR(qrData).subscribe({
         next: (response: any) => {
           if (response.valid) {
-            // 2. Registrar acceso
+            this.qrStatus = 'valid';
+            this.qrMessage = `Acceso permitido: ${response.user.name} ${response.user.lastname}`;
+            
             this.accessControlService.registerAccess({
               userId: qrData.id,
               accessType: 'ENTRADA' // Puedes agregar lógica para determinar si es entrada o salida
             }).subscribe({
-              next: (accessLog: any) => {
-                this.accessLogs.unshift(accessLog);
+              next: () => {
                 this.toastr.success('Acceso registrado correctamente');
               },
               error: (error: Error) => {
+                this.qrStatus = 'invalid';
+                this.qrMessage = 'Error al registrar acceso';
                 this.toastr.error('Error al registrar acceso');
                 console.error('Error:', error);
               }
             });
           } else {
+            this.qrStatus = 'invalid';
+            this.qrMessage = 'QR inválido o membresía expirada';
             this.toastr.error('QR inválido o membresía expirada');
           }
         },
         error: (error: Error) => {
+          this.qrStatus = 'invalid';
+          this.qrMessage = 'Error al validar QR';
           this.toastr.error('Error al validar QR');
           console.error('Error:', error);
         }
       });
     } catch (error) {
+      this.qrStatus = 'invalid';
+      this.qrMessage = 'QR inválido';
       this.toastr.error('QR inválido');
       console.error('Error parsing QR:', error);
     }

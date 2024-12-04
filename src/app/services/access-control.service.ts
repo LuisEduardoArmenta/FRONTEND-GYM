@@ -1,14 +1,55 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+
+export interface AccessLog {
+  id: number;
+  user: any;
+  accessTime: string;
+  accessType: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccessControlService {
   private apiUrl = 'http://localhost:8080';
+  
+  // BehaviorSubject para mantener los últimos accesos
+  private accessLogsSubject = new BehaviorSubject<AccessLog[]>([]);
+  public accessLogs$ = this.accessLogsSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // Cargar logs iniciales
+    this.loadInitialLogs();
+  }
+
+  private loadInitialLogs() {
+    // Obtener los últimos 10 accesos al iniciar
+    this.http.get<AccessLog[]>(`${this.apiUrl}/api/access/logs/recent`).subscribe({
+      next: (logs) => this.accessLogsSubject.next(logs),
+      error: (error) => console.error('Error cargando logs:', error)
+    });
+  }
+
+  // Método para agregar un nuevo log
+  addAccessLog(log: AccessLog) {
+    const currentLogs = this.accessLogsSubject.value;
+    this.accessLogsSubject.next([log, ...currentLogs]);
+  }
+
+  registerAccess(accessData: { userId: number; accessType: string }): Observable<AccessLog> {
+    return new Observable<AccessLog>(observer => {
+      this.http.post<AccessLog>(`${this.apiUrl}/api/access/register`, accessData).subscribe({
+        next: (newLog: AccessLog) => {
+          this.addAccessLog(newLog);
+          observer.next(newLog);
+          observer.complete();
+        },
+        error: (error) => observer.error(error)
+      });
+    });
+  }
 
   // Generar QR para un usuario
   generateUserQR(userId: string): Observable<any> {
@@ -20,19 +61,12 @@ export class AccessControlService {
     return this.http.post(`${this.apiUrl}/api/qr/validate`, qrData);
   }
 
-  // Registrar un acceso
-  registerAccess(accessData: { userId: number; accessType: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/access/register`, accessData);
+  getUserAccessLogs(userId: number): Observable<AccessLog[]> {
+    return this.http.get<AccessLog[]>(`${this.apiUrl}/api/access/logs/user/${userId}`);
   }
 
-  // Obtener logs de acceso por usuario
-  getUserAccessLogs(userId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/access/logs/user/${userId}`);
-  }
-
-  // Obtener logs por rango de fechas
-  getAccessLogsByDateRange(startDate: string, endDate: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/access/logs/range`, {
+  getAccessLogsByDateRange(startDate: string, endDate: string): Observable<AccessLog[]> {
+    return this.http.get<AccessLog[]>(`${this.apiUrl}/api/access/logs/range`, {
       params: { startDate, endDate }
     });
   }
