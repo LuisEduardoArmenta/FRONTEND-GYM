@@ -1,9 +1,40 @@
 <!-- Hero Banner Section -->
-<section class="hero-section position-relative">
-    <div class="hero-content position-absolute top-50 start-50 translate-middle text-center text-white">
-    <h1 class="display-4 fw-bold">¡Comienza una mejor forma de vida!</h1>
-    <h2 class="h3 mb-4">¡Únete a nosotros!</h2>
-    <button class="btn btn-primary btn-lg">Leer más</button>
+<section class="hero-section position-relative vh-100 d-flex align-items-center">
+    <div class="overlay position-absolute w-100 h-100"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 text-white position-relative">
+                <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">
+                    TRANSFORMA TU CUERPO,<br>
+                    TRANSFORMA TU VIDA
+                </h1>
+                <h2 class="h3 mb-4 animate__animated animate__fadeInUp">
+                    Únete a AR GYM y comienza tu viaje hacia una mejor versión de ti
+                </h2>
+                <div class="d-flex gap-3 animate__animated animate__fadeInUp">
+                    <button class="btn btn-primary btn-lg" routerLink="/register">
+                        ¡Comienza Ahora!
+                    </button>
+                    <button class="btn btn-outline-light btn-lg" routerLink="/membresiasinfo">
+                        Ver Membresías
+                    </button>
+                </div>
+                <div class="mt-5 stats d-flex gap-4 animate__animated animate__fadeInUp">
+                    <div class="stat-item">
+                        <h3 class="display-6 fw-bold text-warning">24/7</h3>
+                        <p>Acceso</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="display-6 fw-bold text-warning">+500</h3>
+                        <p>Miembros</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="display-6 fw-bold text-warning">+10</h3>
+                        <p>Entrenadores</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -49,13 +80,20 @@
         </div>
         </div>
 
-        <!-- Black Friday Offer Section -->
-        <div class="black-friday-section mt-5">
+        <!-- Sección de Oferta Navideña -->
+        <div class="christmas-offer-section mt-5">
             <div class="offer-card">
-                <div class="offer-content">
-                    <h2 class="display-4 fw-bold text-white mb-3">BLACK FRIDAY</h2>
-                    <h3 class="text-warning mb-4">¡DESCUENTOS ESPECIALES EN MEMBRESÍAS!</h3>
-                    <p class="text-white mb-4">Aprovecha nuestras increíbles ofertas por tiempo limitado</p>
+                <div class="offer-content text-center">
+                    <h2 class="display-4 fw-bold text-white mb-3">
+                        <i class="bi bi-gift-fill me-2"></i>
+                        ¡OFERTA NAVIDEÑA!
+                    </h2>
+                    <h3 class="text-warning mb-4">¡DESCUENTOS ESPECIALES EN TODAS LAS MEMBRESÍAS!</h3>
+                    <p class="text-white mb-4">
+                        Regálate salud esta Navidad. Aprovecha nuestras increíbles ofertas por tiempo limitado
+                        <br>
+                        <span class="text-warning">¡Válido hasta el 30 de Diciembre!</span>
+                    </p>
                     <button class="btn btn-warning btn-lg" routerLink="/membresiasinfo">
                         <i class="bi bi-tag-fill me-2"></i>Ver Membresías Disponibles
                     </button>

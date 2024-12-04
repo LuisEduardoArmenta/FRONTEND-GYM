@@ -115,4 +115,16 @@ export class AuthService {
     return 0;
   }
 
+  requestPasswordReset(email: string): Observable<any> {
+    return this.http.post('http://localhost:8080/api/password/reset-request', null, {
+      params: { email }
+    });
+  }
+
+  resetPassword(token: string, newPassword: string): Observable<any> {
+    return this.http.post('http://localhost:8080/api/password/reset', null, {
+      params: { token, newPassword }
+    });
+  }
+
 }

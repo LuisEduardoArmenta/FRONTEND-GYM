@@ -1,0 +1,56 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+    <div class="content-wrapper p-4">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h1 class="main-title">Generador de QR</h1>
+                    <hr class="title-underline">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Datos del Usuario</h3>
+                            <div class="mb-3">
+                                <label class="form-label">ID Usuario</label>
+                                <input type="text" class="form-control" [(ngModel)]="userData.id">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" [(ngModel)]="userData.name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Membresía</label>
+                                <input type="text" class="form-control" [(ngModel)]="userData.membership">
+                            </div>
+                            <button class="btn btn-primary" (click)="generateQR()">Generar QR</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3>Código QR Generado</h3>
+                            @if (qrImageUrl) {
+                                <div class="qr-container">
+                                    <img [src]="qrImageUrl" alt="QR Code">
+                                    <button class="btn btn-success mt-3" (click)="downloadQR()">
+                                        Descargar QR
+                                    </button>
+                                </div>
+                            } @else {
+                                <p class="text-muted">
+                                    Ingresa los datos y presiona "Generar QR"
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

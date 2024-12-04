@@ -1,13 +1,15 @@
 .training-plans {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
+    margin-left: 50px;
 }
 
 .section-title {
-    margin-bottom: 30px;
+    margin: 20px 0 30px;
     color: #333;
     font-weight: 600;
+    text-align: center;
 }
 
 .card {
@@ -54,15 +56,16 @@
 .main-container {
     display: flex;
     min-height: 100vh;
+    position: relative;
 }
 
 .content {
     flex: 1;
-    margin-left: 280px;
-    padding: 20px;
+    margin-left: 100px;
+    padding: 20px 40px;
     background-color: #f8f9fa;
-    min-height: calc(100vh - 85px);
-    margin-top: 85px;
+    min-height: calc(100vh - 60px);
+    margin-top: 1px;
 }
 
 .training-tips {
@@ -85,24 +88,31 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin: -10px;  /* Compensar el padding de las columnas */
+    margin: -10px;
     justify-content: flex-start;
+    gap: 20px;
+    padding-left: 20px;
 }
 
 .col-md-6 {
     padding: 10px;
-    flex: 0 0 calc(50% - 20px);  /* 50% de ancho menos el padding */
-    max-width: calc(50% - 20px);
+    flex: 0 0 calc(42% - 20px);
+    max-width: calc(42% - 20px);
 }
 
 @media (max-width: 768px) {
-    .col-md-6 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-    
     .content {
         margin-left: 0;
+        padding: 15px;
+    }
+    
+    .training-plans {
+        margin-left: 0;
         padding: 10px;
+    }
+    
+    .row {
+        padding-left: 0;
+        justify-content: center;
     }
 }

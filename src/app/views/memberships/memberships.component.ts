@@ -17,24 +17,33 @@ export class MembershipsComponent implements OnInit, OnDestroy {
     seconds: 0
   };
   private timer: any;
+  private endDate: Date = new Date('2023-12-15T23:59:59');
+  isOfferActive: boolean = true;
 
   ngOnInit() {
-    // Establecer la fecha final (7 días desde ahora)
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 7);
+    if (new Date().getTime() > this.endDate.getTime()) {
+      this.isOfferActive = false;
+      return;
+    }
     
     this.timer = setInterval(() => {
       const now = new Date().getTime();
-      const distance = endDate.getTime() - now;
+      const distance = this.endDate.getTime() - now;
       
-      this.timeLeft.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      this.timeLeft.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      this.timeLeft.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      this.timeLeft.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      if (distance < 0) {
+      if (distance > 0) {
+        this.timeLeft.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        this.timeLeft.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        this.timeLeft.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        this.timeLeft.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      } else {
+        this.timeLeft = {
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0
+        };
+        this.isOfferActive = false;
         clearInterval(this.timer);
-        // Reiniciar el contador o mostrar mensaje
       }
     }, 1000);
   }

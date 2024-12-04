@@ -1,0 +1,69 @@
+<div class="d-flex">
+    <app-sidebar></app-sidebar>
+    <div class="content-wrapper p-4">
+        <div class="container">
+            <!-- Título Principal -->
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h1 class="main-title">Control de Acceso</h1>
+                    <hr class="title-underline">
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Scanner Container -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Escáner QR</h2>
+                            <div id="reader" style="width: 100%; max-width: 600px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Últimos Accesos -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Últimos Accesos</h2>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Usuario</th>
+                                            <th>Tipo</th>
+                                            <th>Fecha/Hora</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (log of accessLogs; track log.id) {
+                                            <tr>
+                                                <td>{{log.user.name}} {{log.user.lastname}}</td>
+                                                <td>{{log.accessType}}</td>
+                                                <td>{{log.accessTime | date:'medium'}}</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultado del último escaneo -->
+            @if (lastResult) {
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Último QR escaneado:</h3>
+                                <pre>{{ lastResult | json }}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

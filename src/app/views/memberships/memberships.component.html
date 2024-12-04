@@ -1,13 +1,24 @@
 <section class="memberships-section py-5">
   <div class="container">
-    <div class="text-center mb-5">
-      <h1 class="display-4 fw-bold text-white">Nuestras Membresías</h1>
-      <p class="lead text-white-50">Elige el plan que mejor se adapte a ti</p>
+    <div class="text-center mb-5 position-relative">
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="title-wrapper">
+          <h1 class="display-4 fw-bold text-white">
+            <i class="bi bi-gift-fill text-danger"></i> 
+            Regalos Navideños
+          </h1>
+          <p class="lead text-white-50">Dale a tu cuerpo el mejor regalo esta Navidad</p>
+        </div>
+        <div class="logo-wrapper ms-4">
+          <img src="/images/logored.png" alt="AR GYM Logo" class="gym-logo">
+        </div>
+      </div>
     </div>
     
     <!-- Contador de oferta -->
-    <div class="offer-countdown text-center mb-5">
-      <h2 class="text-warning display-5 fw-bold">¡OFERTA ESPECIAL!</h2>
+    <div class="offer-countdown text-center mb-5" *ngIf="isOfferActive">
+      <div class="snow"></div>
+      <h2 class="text-danger display-5 fw-bold">¡OFERTA ESPECIAL DE NAVIDAD!</h2>
       <div class="countdown-timer">
         <div class="timer-item">
           <span>{{timeLeft.days}}</span>
@@ -32,24 +43,24 @@
     <div class="row g-4">
       <!-- Plan Básico -->
       <div class="col-md-6 col-lg-4">
-        <div class="membership-card">
+        <div class="membership-card christmas">
           <div class="plan-icon mb-3">
             <i class="bi bi-star"></i>
           </div>
           <div class="card-header">
             <h3>Plan Básico</h3>
             <div class="price">
-              <span class="original">$350</span>
-              <span class="current">$299</span>
+              <span class="original text-decoration-line-through text-muted">$350</span>
+              <span class="current text-danger fw-bold">$299</span>
               <small>/mes</small>
             </div>
           </div>
           <div class="card-body">
             <ul class="benefits">
-              <li><i class="bi bi-check-circle-fill"></i> Acceso al gimnasio</li>
-              <li><i class="bi bi-check-circle-fill"></i> Área de pesas</li>
-              <li><i class="bi bi-check-circle-fill"></i> Vestidores</li>
-              <li><i class="bi bi-check-circle-fill"></i> Área cardiovascular</li>
+              <li><i class="bi bi-gift text-danger"></i> Acceso al gimnasio</li>
+              <li><i class="bi bi-gift text-danger"></i> Área de pesas</li>
+              <li><i class="bi bi-gift text-danger"></i> Vestidores</li>
+              <li><i class="bi bi-gift text-danger"></i> Área cardiovascular</li>
             </ul>
           </div>
         </div>
@@ -57,25 +68,25 @@
 
       <!-- Plan Premium -->
       <div class="col-md-6 col-lg-4">
-        <div class="membership-card popular">
+        <div class="membership-card christmas popular">
+          <div class="popular-badge">RECOMENDADO</div>
           <div class="plan-icon mb-3">
             <i class="bi bi-stars"></i>
           </div>
-          <div class="popular-badge">RECOMENDADO</div>
           <div class="card-header">
             <h3>Plan Premium</h3>
             <div class="price">
-              <span class="original">$950</span>
-              <span class="current">$799</span>
+              <span class="original text-decoration-line-through text-muted">$950</span>
+              <span class="current text-danger fw-bold">$799</span>
               <small>/trimestre</small>
             </div>
           </div>
           <div class="card-body">
             <ul class="benefits">
-              <li><i class="bi bi-check-circle-fill"></i> Todo del plan básico</li>
-              <li><i class="bi bi-check-circle-fill"></i> Clases grupales</li>
-              <li><i class="bi bi-check-circle-fill"></i> Programa de entrenamiento</li>
-              <li><i class="bi bi-check-circle-fill"></i> Evaluación física mensual</li>
+              <li><i class="bi bi-gift text-danger"></i> Todo del plan básico</li>
+              <li><i class="bi bi-gift text-danger"></i> Clases grupales</li>
+              <li><i class="bi bi-gift text-danger"></i> Programa personalizado</li>
+              <li><i class="bi bi-gift text-danger"></i> Evaluación mensual</li>
             </ul>
           </div>
         </div>
@@ -83,24 +94,24 @@
 
       <!-- Plan Elite -->
       <div class="col-md-6 col-lg-4">
-        <div class="membership-card">
+        <div class="membership-card christmas">
           <div class="plan-icon mb-3">
             <i class="bi bi-trophy"></i>
           </div>
           <div class="card-header">
             <h3>Plan Elite</h3>
             <div class="price">
-              <span class="original">$1,800</span>
-              <span class="current">$1,499</span>
+              <span class="original text-decoration-line-through text-muted">$1,800</span>
+              <span class="current text-danger fw-bold">$1,499</span>
               <small>/semestre</small>
             </div>
           </div>
           <div class="card-body">
             <ul class="benefits">
-              <li><i class="bi bi-check-circle-fill"></i> Todo del plan premium</li>
-              <li><i class="bi bi-check-circle-fill"></i> Asesoría nutricional</li>
-              <li><i class="bi bi-check-circle-fill"></i> Acceso a sauna</li>
-              <li><i class="bi bi-check-circle-fill"></i> 2 sesiones PT mensuales</li>
+              <li><i class="bi bi-gift text-danger"></i> Todo del plan premium</li>
+              <li><i class="bi bi-gift text-danger"></i> Asesoría nutricional</li>
+              <li><i class="bi bi-gift text-danger"></i> Acceso a sauna</li>
+              <li><i class="bi bi-gift text-danger"></i> 2 sesiones PT mensuales</li>
             </ul>
           </div>
         </div>
@@ -108,24 +119,24 @@
 
       <!-- Plan Platinum -->
       <div class="col-md-6 col-lg-6">
-        <div class="membership-card">
+        <div class="membership-card christmas">
           <div class="plan-icon mb-3">
             <i class="bi bi-gem"></i>
           </div>
           <div class="card-header">
             <h3>Plan Platinum</h3>
             <div class="price">
-              <span class="original">$3,200</span>
-              <span class="current">$2,799</span>
+              <span class="original text-decoration-line-through text-muted">$3,200</span>
+              <span class="current text-danger fw-bold">$2,799</span>
               <small>/año</small>
             </div>
           </div>
           <div class="card-body">
             <ul class="benefits">
-              <li><i class="bi bi-check-circle-fill"></i> Todo del plan elite</li>
-              <li><i class="bi bi-check-circle-fill"></i> 4 sesiones PT mensuales</li>
-              <li><i class="bi bi-check-circle-fill"></i> Acceso a piscina</li>
-              <li><i class="bi bi-check-circle-fill"></i> Suplementos básicos</li>
+              <li><i class="bi bi-gift text-danger"></i> Todo del plan elite</li>
+              <li><i class="bi bi-gift text-danger"></i> 4 sesiones PT mensuales</li>
+              <li><i class="bi bi-gift text-danger"></i> Acceso a piscina</li>
+              <li><i class="bi bi-gift text-danger"></i> Suplementos básicos</li>
             </ul>
           </div>
         </div>
@@ -133,24 +144,24 @@
 
       <!-- Plan Diamond -->
       <div class="col-md-6 col-lg-6">
-        <div class="membership-card">
+        <div class="membership-card christmas">
           <div class="plan-icon mb-3">
             <i class="bi bi-diamond"></i>
           </div>
           <div class="card-header">
             <h3>Plan Diamond</h3>
             <div class="price">
-              <span class="original">$5,500</span>
-              <span class="current">$4,999</span>
+              <span class="original text-decoration-line-through text-muted">$5,500</span>
+              <span class="current text-danger fw-bold">$4,999</span>
               <small>/2 años</small>
             </div>
           </div>
           <div class="card-body">
             <ul class="benefits">
-              <li><i class="bi bi-check-circle-fill"></i> Todo del plan platinum</li>
-              <li><i class="bi bi-check-circle-fill"></i> PT ilimitado</li>
-              <li><i class="bi bi-check-circle-fill"></i> Spa completo</li>
-              <li><i class="bi bi-check-circle-fill"></i> Invitados permitidos</li>
+              <li><i class="bi bi-gift text-danger"></i> Todo del plan platinum</li>
+              <li><i class="bi bi-gift text-danger"></i> PT ilimitado</li>
+              <li><i class="bi bi-gift text-danger"></i> Spa completo</li>
+              <li><i class="bi bi-gift text-danger"></i> Invitados permitidos</li>
             </ul>
           </div>
         </div>

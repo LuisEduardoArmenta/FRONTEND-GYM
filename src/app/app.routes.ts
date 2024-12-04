@@ -16,9 +16,11 @@ import { VentasFormComponent } from './components/ventas/ventas-form/ventas-form
 import { InventarioComponent } from './components/inventario/inventario.component';
 import { InventarioFormComponent } from './components/inventario/inventario-form/inventario-form.component';
 import { UserDashboardComponent } from './users/user-dashboard/user-dashboard.component';
-import { ObjetivosComponent } from './users/objetivos/objetivos.component';
 import { TrainingPlansComponent } from './users/training-plans/training-plans.component';
 import { ControlCajaComponent } from './components/control-caja/control-caja.component';
+import { ResetPasswordComponent } from './reset-password/reset-password/reset-password.component';
+import { QrGeneratorComponent } from './components/qr-generator/qr-generator.component';
+import { AccessControlComponent } from './components/access-control/access-control.component';
 
 export const routes: Routes = [
     {
@@ -29,6 +31,27 @@ export const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'login',
+        component: AuthComponent
+    },
+
+    {
+        path: 'reset-password',
+        component: ResetPasswordComponent
+    },
+    {
+        path: 'forbidden',
+        component: Forbidden403Component
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
+    },
+    {
+        path: 'membresiasinfo',
+        component: MembershipsComponent
     },
     {
         path: 'users',
@@ -54,22 +77,7 @@ export const routes: Routes = [
         canActivate: [authGuard],
         data: { role: 'ADMIN' }
     },
-    {
-        path: 'login',
-        component: AuthComponent
-    },
-    {
-        path: 'forbidden',
-        component: Forbidden403Component
-    },
-    {
-        path: 'register',
-        component: RegisterComponent
-    },
-    {
-        path: 'membresiasinfo',
-        component: MembershipsComponent
-    },
+
     {
         path: 'membresia',
         component: MembresiaComponent,
@@ -164,15 +172,19 @@ export const routes: Routes = [
         data: { role: 'USER' }
     },
     {
-        path: 'user/objetivos',
-        component: ObjetivosComponent,
-        canActivate: [authGuard],
-        data: { role: 'USER' }
-    },
-    {
         path: 'user/entrenamientos',
         component: TrainingPlansComponent,
         canActivate: [authGuard],
         data: { role: 'USER' }
+    },
+    {
+        path: 'access-control',
+        loadComponent: () => import('./components/access-control/access-control.component')
+            .then(m => m.AccessControlComponent)
+    },
+    {
+        path: 'qr-generator',
+        component: QrGeneratorComponent
     }
+
 ];

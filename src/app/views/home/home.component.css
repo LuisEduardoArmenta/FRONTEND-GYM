@@ -104,48 +104,41 @@ body, html {
     border-bottom: 1px solid rgba(26, 19, 99, 0.1);
   }
 
-  .black-friday-section {
-    background: linear-gradient(rgba(26, 19, 99, 0.9), rgba(26, 19, 99, 0.9)),
-                url('/images/gym-background.jpg') center/cover;
+  .christmas-offer-section {
+    padding: 3rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                url('/assets/images/christmas-gym.jpg') no-repeat center center;
+    background-size: cover;
     border-radius: 15px;
-    overflow: hidden;
-    padding: 4rem 2rem;
-    text-align: center;
-    position: relative;
+    margin: 2rem 0;
   }
 
   .offer-card {
-    position: relative;
-    z-index: 2;
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
   }
 
   .offer-content {
-    max-width: 800px;
-    margin: 0 auto;
+    animation: fadeIn 1s ease-in;
   }
 
   .btn-warning {
-    background-color: #FDEE21;
-    border: none;
-    color: #1A1363;
-    font-weight: bold;
-    padding: 1rem 2rem;
-    border-radius: 50px;
     transition: all 0.3s ease;
   }
 
   .btn-warning:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(253, 238, 33, 0.3);
-    background-color: #FDEE21;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
   }
 
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-
-  .black-friday-section h2 {
-    animation: pulse 2s infinite;
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
   }

@@ -80,4 +80,14 @@ export class MembresiaComponent implements OnInit {
   get admin(): boolean {
     return this.authService.isAdmin();
   }
+
+  generarQR(membresia: any) {
+    this.router.navigate(['/qr-generator'], { 
+      queryParams: { 
+        userId: membresia.usuario?.id,
+        name: `${membresia.usuario?.name} ${membresia.usuario?.lastname}`,
+        membership: membresia.plan?.nombre
+      }
+    });
+  }
 }
