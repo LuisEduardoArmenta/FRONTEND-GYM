@@ -123,7 +123,7 @@ export class AccessControlComponent implements OnInit, OnDestroy {
         },
         error: (error: Error) => {
           this.qrStatus = 'invalid';
-          this.qrMessage = 'Error al validar QR';
+          this.qrMessage = 'Membresia Expirada';
           this.toastr.error('Error al validar QR');
           console.error('Error:', error);
         }

@@ -6,17 +6,20 @@ import { AccessControlService } from '../../services/access-control.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner'
+import { NgxSpinnerModule } from 'ngx-spinner';
 @Component({
   selector: 'app-qr-generator',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent, NgxSpinnerModule],
   templateUrl: './qr-generator.component.html',
   styleUrls: ['./qr-generator.component.css']
 })
 export class QrGeneratorComponent implements OnInit {
   qrImageUrl: string = '';
   loading: boolean = false;
+  spinnerVisible: boolean = false;
   userData = {
     id: '',
     name: '',
@@ -26,7 +29,8 @@ export class QrGeneratorComponent implements OnInit {
   constructor(
     private accessControlService: AccessControlService,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -67,7 +71,6 @@ export class QrGeneratorComponent implements OnInit {
       .then(url => {
         this.qrImageUrl = url;
         this.loading = false;
-        this.toastr.success('QR generado correctamente');
       })
       .catch(err => {
         console.error('Error generando QR:', err);
@@ -86,4 +89,25 @@ export class QrGeneratorComponent implements OnInit {
     link.href = this.qrImageUrl;
     link.click();
   }
+
+  sendQRToEmail() {
+    if (!this.userData.id) {
+      Swal.fire('Error', 'Debes proporcionar el ID del usuario.', 'error');
+      return;
+    }
+  
+    this.spinner.show(); // Mostrar el spinner
+    this.accessControlService.sendQrToEmail(Number(this.userData.id))
+      .subscribe({
+        next: () => {
+          this.spinner.hide(); // Ocultar el spinner
+          Swal.fire('Éxito', 'Correo enviado exitosamente.', 'success');
+        },
+        error: (err) => {
+          this.spinner.hide(); // Ocultar el spinner también en caso de error
+          Swal.fire('Error', err.error?.mensaje || 'No se pudo enviar el correo.', 'error');
+        }
+      });
+    }
+    
 }

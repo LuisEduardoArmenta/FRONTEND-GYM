@@ -1,0 +1,72 @@
+.main-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  app-sidebar-user {
+    flex: 0 0 250px; /* Ancho fijo para el sidebar */
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .nutrition-recommendation {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nutrition-recommendation h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .btn {
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .recommendation-result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #e3f2fd;
+    color: #0d47a1;
+  }
+  

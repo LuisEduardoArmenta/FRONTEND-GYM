@@ -24,3 +24,20 @@
     margin: 20px auto;
     display: block;
 }
+
+button {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    button {
+        margin-bottom: 10px;
+        width: 100%; 
+    }
+}
+
+ngx-spinner {
+    position: fixed;
+    z-index: 9999;
+  }
+  

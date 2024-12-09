@@ -61,6 +61,12 @@ export class AccessControlService {
     return this.http.post(`${this.apiUrl}/api/qr/validate`, qrData);
   }
 
+  // Mandar QR al correo electronico 
+  sendQrToEmail(userId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/api/qr/send/${userId}`, {});
+  }
+
+  
   getUserAccessLogs(userId: number): Observable<AccessLog[]> {
     return this.http.get<AccessLog[]>(`${this.apiUrl}/api/access/logs/user/${userId}`);
   }

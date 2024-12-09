@@ -21,6 +21,7 @@ import { ControlCajaComponent } from './components/control-caja/control-caja.com
 import { ResetPasswordComponent } from './reset-password/reset-password/reset-password.component';
 import { QrGeneratorComponent } from './components/qr-generator/qr-generator.component';
 import { AccessControlComponent } from './components/access-control/access-control.component';
+import { NutricionComponent } from './users/nutricion/nutricion.component';
 
 export const routes: Routes = [
     {
@@ -178,13 +179,24 @@ export const routes: Routes = [
         data: { role: 'USER' }
     },
     {
+        path: 'user/nutricion',
+        component: NutricionComponent,
+        canActivate: [authGuard],
+        data: { role: 'USER' }
+
+    },
+    {
         path: 'access-control',
         loadComponent: () => import('./components/access-control/access-control.component')
-            .then(m => m.AccessControlComponent)
+            .then(m => m.AccessControlComponent),
+            canActivate: [authGuard],
+            data: { role: 'ADMIN' }
     },
     {
         path: 'qr-generator',
-        component: QrGeneratorComponent
+        component: QrGeneratorComponent,
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
     }
 
 ];
