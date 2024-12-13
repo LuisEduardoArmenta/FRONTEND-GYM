@@ -9,7 +9,6 @@
         </div>
         <div class="user-info">
             <div class="username">{{username}}</div>
-            <div class="email">{{email}}</div>
         </div>
     </div>
 
@@ -34,19 +33,6 @@
            class="nav-item">
             <i class="bi bi-apple"></i>
             <span>Plan Nutricional</span>
-        </a>
-
-        <a routerLink="/user/progreso" 
-           routerLinkActive="active"
-           class="nav-item">
-            <i class="bi bi-graph-up"></i>
-            <span>Mi Progreso</span>
-        </a>
-        <a routerLink="/user/tienda" 
-           routerLinkActive="active"
-           class="nav-item">
-            <i class="bi bi-bag"></i>
-            <span>Tienda</span>
         </a>
 
         <a (click)="handlerLogout()" 

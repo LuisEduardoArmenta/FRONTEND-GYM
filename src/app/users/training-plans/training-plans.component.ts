@@ -16,7 +16,7 @@ export class TrainingPlansComponent {
       name: 'Push Pull Legs (PPL)',
       description: 'Rutina dividida en 3 días: empuje, jalón y piernas. Ideal para principiantes e intermedios.',
       duration: '3-6 días por semana',
-      difficulty: 'Intermedio',
+      difficulty: 'Todos los niveles',
       image: 'images/ppl.jpg',
       tips: [
         'Mantén un día de descanso entre cada sesión si entrenas 3 días',
@@ -35,7 +35,29 @@ export class TrainingPlansComponent {
             { name: 'Extensiones de tríceps con cuerda', sets: '3', reps: '12-15' }
           ]
         },
-        // ... otros días similares
+
+      {
+        day: 'Día 2: Pull (Espalda, Bíceps)',
+        exercises: [
+          { name: 'Dominadas', sets: '4', reps: '8-12' },
+          { name: 'Remo con barra', sets: '3', reps: '8-10' },
+          { name: 'Jalón al pecho', sets: '3', reps: '10-12' },
+          { name: 'Remo con mancuerna', sets: '3', reps: '10-12' },
+          { name: 'Curl de bíceps con barra', sets: '3', reps: '10-12' },
+          { name: 'Curl martillo', sets: '3', reps: '12-15' }
+        ]
+      },
+      {
+        day: 'Día 3: Legs (Piernas)',
+        exercises: [
+          { name: 'Sentadilla', sets: '4', reps: '8-10' },
+          { name: 'Prensa de piernas', sets: '3', reps: '10-12' },
+          { name: 'Peso muerto rumano', sets: '3', reps: '8-10' },
+          { name: 'Zancadas', sets: '3', reps: '12-15' },
+          { name: 'Elevaciones de talones', sets: '3', reps: '15-20' },
+          { name: 'Crunches en máquina', sets: '3', reps: '15-20' }
+        ]
+      }
       ]
     },
     {

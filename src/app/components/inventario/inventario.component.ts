@@ -52,7 +52,6 @@ export class InventarioComponent implements OnInit {
       next: (data) => {
         this.productos = data.map(producto => ({
           ...producto,
-          estado: true
         }));
         this.productosOriginal = [...this.productos];
         this.loading = false;

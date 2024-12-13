@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { SidebarUserComponent } from '../sidebar-user/sidebar-user.component';
-import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -15,11 +14,11 @@ export class NutricionComponent {
   weight: number = 0;
   height: number = 0;
   age: number = 0;
-  gender: string = 'masculino'; // Agregado para el género
+  gender: string = 'masculino'; 
   activityLevel: string = '';
   goal: string = '';
   recommendation: string = '';
-  foodRecommendation: string = ''; // Recomendación alimenticia
+  foodRecommendation: string = ''; 
 
   calculateRecommendation() {
     if (this.weight <= 0 || this.height <= 0 || this.age <= 0 || !this.activityLevel || !this.goal || !this.gender) {
@@ -46,6 +45,7 @@ export class NutricionComponent {
     }
   }
 
+  // Formula de Harris-Benedict
   calculateTMB(weight: number, height: number, age: number, gender: string): number {
     if (gender === 'masculino') {
       return 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age; // Hombres
@@ -54,6 +54,7 @@ export class NutricionComponent {
     }
   }
 
+  // nivel de actividad
   adjustCalories(tmb: number, activityLevel: string): number {
     const factors: Record<string, number> = {
       sedentario: 1.2,

@@ -274,6 +274,7 @@ export class ControlCajaComponent implements OnInit {
   exportarPDF() {
     Swal.fire('Info', 'Función de exportar a PDF en desarrollo', 'info');
   }
+  
 
   calcularTotales() {
     const movimientosFiltrados = this.filtrarMovimientos();

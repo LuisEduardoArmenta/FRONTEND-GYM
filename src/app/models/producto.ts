@@ -5,7 +5,6 @@ export interface Producto {
     precio: number;
     stock: number;
     categoria: string;
-    estado: boolean;
     fechaCreacion?: Date;
     fechaActualizacion?: Date;
 } 

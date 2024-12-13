@@ -24,6 +24,7 @@
     "angularx-qrcode": "^18.0.0",
     "animate.css": "^4.1.1",
     "html5-qrcode": "^2.3.8",
+    "jspdf": "^2.5.2",
     "ngx-spinner": "^17.0.0",
     "ngx-toastr": "^18.0.0",
     "qrcode": "^1.5.4",

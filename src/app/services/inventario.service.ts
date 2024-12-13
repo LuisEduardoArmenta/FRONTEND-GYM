@@ -32,12 +32,10 @@ export class InventarioService {
   }
 
   createProducto(producto: Producto): Observable<Producto> {
-    producto.estado = true;
     return this.http.post<Producto>(this.baseUrl, producto, { headers: this.getHeaders() });
   }
 
   updateProducto(idProducto: number, producto: Producto): Observable<Producto> {
-    producto.estado = producto.estado === true;
     return this.http.put<Producto>(`${this.baseUrl}/${idProducto}`, producto, { headers: this.getHeaders() });
   }
 

@@ -24,7 +24,7 @@
                                         <th>Apellido</th>
                                         <th>Email</th>
                                         <th>Username</th>
-                                        <th>Rol</th>
+                                        <th></th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -37,9 +37,6 @@
                                             <td>{{user.email}}</td>
                                             <td>{{user.username}}</td>
                                             <td>
-                                                <span [class]="'badge ' + (user.admin ? 'bg-primary' : 'bg-success')">
-                                                    {{user.admin ? 'Administrador' : 'Usuario'}}
-                                                </span>
                                             </td>
                                             <td>
                                                 <div class="btn-group">

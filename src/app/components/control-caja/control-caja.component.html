@@ -3,14 +3,6 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Control de Caja</h2>
-        <div class="btn-group">
-            <button class="btn btn-outline-primary" (click)="exportarExcel()">
-                <i class="bi bi-file-excel"></i> Excel
-            </button>
-            <button class="btn btn-outline-danger" (click)="exportarPDF()">
-                <i class="bi bi-file-pdf"></i> PDF
-            </button>
-        </div>
     </div>
 
     @if (loading) {
@@ -125,7 +117,7 @@
             </div>
         }
 
-        <div class="card mb-4">
+        <!-- <div class="card mb-4">
             <div class="card-header">
                 <h5>Filtros de Historial</h5>
             </div>
@@ -169,7 +161,7 @@
                     <button class="btn btn-primary" (click)="aplicarFiltros()">Aplicar</button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="row mb-4">
             <div class="col-md-4">

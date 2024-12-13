@@ -96,7 +96,7 @@
 
                     <!-- Tabla -->
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-striped">
                             <thead class="table-light">
                                 <tr>
                                     <th>ID</th>
@@ -105,7 +105,6 @@
                                     <th>Precio</th>
                                     <th>Stock</th>
                                     <th>Categoría</th>
-                                    <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -127,11 +126,7 @@
                                                 </span>
                                             </td>
                                             <td>{{producto?.categoria}}</td>
-                                            <td>
-                                                <span [class]="producto.estado === true ? 'badge bg-success' : 'badge bg-danger'">
-                                                    {{producto.estado === true ? 'Activo' : 'Inactivo'}}
-                                                </span>
-                                            </td>
+
                                             <td>
                                                 <div class="btn-group">
                                                     <button class="btn btn-sm btn-info me-2" 

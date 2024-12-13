@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import * as QRCode from 'qrcode';
 import { AccessControlService } from '../../services/access-control.service';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner'
@@ -29,8 +29,9 @@ export class QrGeneratorComponent implements OnInit {
   constructor(
     private accessControlService: AccessControlService,
     private route: ActivatedRoute,
+    private router: Router,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
@@ -110,4 +111,7 @@ export class QrGeneratorComponent implements OnInit {
       });
     }
     
+    onClose(){
+      this.router.navigate(['/membresia']);
+    }
 }

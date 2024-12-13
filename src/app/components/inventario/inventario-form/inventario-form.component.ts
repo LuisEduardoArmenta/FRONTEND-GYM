@@ -22,7 +22,6 @@ export class InventarioFormComponent implements OnInit {
     precio: 0,
     stock: 0,
     categoria: '',
-    estado: true // Por defecto activo
   };
   
   titulo: string = 'Crear Producto';
@@ -57,9 +56,7 @@ export class InventarioFormComponent implements OnInit {
   }
 
   guardarProducto(): void {
-    if (this.validarFormulario()) {
-      this.producto.estado = this.producto.estado === true;
-      
+    if (this.validarFormulario()) {      
       if (this.producto.idProducto) {
         this.inventarioService.updateProducto(this.producto.idProducto, this.producto).subscribe({
           next: () => {

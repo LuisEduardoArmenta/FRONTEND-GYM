@@ -22,6 +22,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password/reset-pa
 import { QrGeneratorComponent } from './components/qr-generator/qr-generator.component';
 import { AccessControlComponent } from './components/access-control/access-control.component';
 import { NutricionComponent } from './users/nutricion/nutricion.component';
+import { AcercadeComponent } from './acercade/acercade.component';
+import { FaqComponent } from './faq/faq.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 export const routes: Routes = [
     {
@@ -53,6 +56,18 @@ export const routes: Routes = [
     {
         path: 'membresiasinfo',
         component: MembershipsComponent
+    },
+    {
+        path: 'acercade',
+        component: AcercadeComponent
+    },
+    {
+        path: 'faq',
+        component: FaqComponent
+    },
+    {
+        path: 'contacto',
+        component: ContactoComponent
     },
     {
         path: 'users',

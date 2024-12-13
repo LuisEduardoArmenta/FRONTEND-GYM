@@ -17,7 +17,7 @@ export class VentasComponent implements OnInit {
   title: string = 'Gestión de Ventas';
   ventas: any[] = [];
   loading: boolean = true;
-  totalVentas: number = 0;
+  totalVentas: string = '';
   totalProductos: number = 0;
   ventasHoy: number = 0;
   productosTop: number = 0;
@@ -56,7 +56,7 @@ export class VentasComponent implements OnInit {
 
   calcularEstadisticas(): void {
     // Calcular total de ventas
-    this.totalVentas = this.ventas.reduce((total, venta) => total + Number(venta.total), 0);
+    this.totalVentas = this.ventas.reduce((total, venta) => total + Number(venta.total), 0).toFixed(2);
     
     // Calcular total de productos vendidos
     this.totalProductos = this.ventas.reduce((total, venta) => total + Number(venta.cantidad), 0);
